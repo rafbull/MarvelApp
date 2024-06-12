@@ -16,10 +16,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        let viewController = ViewController()
+        let networkService = NetworkService()
+        let homeNavigationController = UINavigationController()
+        let homeDependencies = HomeAssembly.Dependencies(navigationController: homeNavigationController, networkService: networkService)
+        let homeViewController = HomeAssembly.makeModule(with: homeDependencies)
+        
+        homeNavigationController.viewControllers = [homeViewController]
+        
+        let tabBarController = TabBarController(homeNavigationController, UIViewController(), UIViewController())
         
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = viewController
+        window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
     }
 
