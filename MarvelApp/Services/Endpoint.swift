@@ -7,22 +7,34 @@
 
 import Foundation
 
+#warning("убрать неиспользуемые эндроинты")
 enum Endpoint {
     case comics
     case characters
     case creators
     case events
     case series
-    case stories
     case comicID(_ id: String)
     case characterID(_ id: String)
     case creatorID(_ id: String)
     case eventID(_ id: String)
     case seriesID(_ id: String)
-    case storyID(_ id: String)
+    
+    case comicsWithCharacterID(_ id: String)
+    case seriesWithCharacterID(_ id: String)
+    case charactersFromComicID(_ id: String)
+    case creatorsWithComicID(_ id: String)
+    case comicsWithCreatorID(_ id: String)
+    case eventsWithCreatorID(_ id: String)
+    case charactersWithSeriesID(_ id: String)
+    case comicsWithSeriesID(_ id: String)
+    case comicsWithEventID(_ id: String)
+    case creatorsWithEventID(_ id: String)
     
     case weekNoveltiesComics
     case monthNoveltiesComics
+    
+    case character(_ name: String)
     
     func absoluteURL() -> String {
         var components = URLComponents()
@@ -41,7 +53,7 @@ private extension Endpoint {
         switch self {
         case .comics, .weekNoveltiesComics, .monthNoveltiesComics:
             return "/v1/public/comics"
-        case .characters:
+        case .characters, .character:
             return "/v1/public/characters"
         case .creators:
             return "/v1/public/creators"
@@ -49,8 +61,6 @@ private extension Endpoint {
             return "/v1/public/events"
         case .series:
             return "/v1/public/series"
-        case .stories:
-            return "/v1/public/stories"
         case .comicID(let id):
             return "/v1/public/comics/\(id)"
         case .characterID(let id):
@@ -61,8 +71,26 @@ private extension Endpoint {
             return "/v1/public/events/\(id)"
         case .seriesID(let id):
             return "/v1/public/series/\(id)"
-        case .storyID(let id):
-            return "/v1/public/stories/\(id)"
+        case .comicsWithCharacterID(let id):
+            return "/v1/public/characters/\(id)/comics"
+        case .seriesWithCharacterID(let id):
+            return "/v1/public/characters/\(id)/series"
+        case .charactersFromComicID(let id):
+            return "/v1/public/comics/\(id)/characters"
+        case .creatorsWithComicID(let id):
+            return "/v1/public/comics/\(id)/creators"
+        case .comicsWithCreatorID(let id):
+            return "/v1/public/creators/\(id)/comics"
+        case .eventsWithCreatorID(let id):
+            return "/v1/public/creators/\(id)/events"
+        case .charactersWithSeriesID(let id):
+            return "/v1/public/series/\(id)/characters"
+        case .comicsWithSeriesID(let id):
+            return "/v1/public/series/\(id)/comics"
+        case .comicsWithEventID(let id):
+            return "/v1/public/events/\(id)/comics"
+        case .creatorsWithEventID(let id):
+            return "/v1/public/events/\(id)/creators"
         }
     }
     
@@ -94,7 +122,7 @@ private extension Endpoint {
                 URLQueryItem(name: "orderBy", value: "focDate"),
                 URLQueryItem(name: "limit", value: "10")
             ])
-        case .comics:
+        case .comics, .comicsWithCharacterID, .comicsWithCreatorID, .comicsWithSeriesID, .comicsWithEventID:
             items.append(contentsOf: [
                 URLQueryItem(name: "format", value: "comic"),
                 URLQueryItem(name: "formatType", value: "comic"),
@@ -106,6 +134,24 @@ private extension Endpoint {
         case .characters:
             items.append(contentsOf: [
                 URLQueryItem(name: "series", value: "24229"),
+                URLQueryItem(name: "limit", value: "20")
+            ])
+        case .character(let name):
+            items.append(contentsOf: [
+                URLQueryItem(name: "nameStartsWith", value: name),
+                URLQueryItem(name: "orderBy", value: "name"),
+                URLQueryItem(name: "limit", value: "10")
+            ])
+        case .creators, .creatorsWithComicID, .creatorsWithEventID:
+            items.append(contentsOf: [
+                URLQueryItem(name: "orderBy", value: "suffix"),
+                URLQueryItem(name: "limit", value: "20")
+            ])
+        case .series, .seriesWithCharacterID:
+            items.append(contentsOf: [
+                URLQueryItem(name: "startYear", value: "2000"),
+                URLQueryItem(name: "contains", value: "comic"),
+                URLQueryItem(name: "orderBy", value: "-startYear"),
                 URLQueryItem(name: "limit", value: "20")
             ])
         default:

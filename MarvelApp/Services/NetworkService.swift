@@ -10,6 +10,7 @@ import UIKit
 final class NetworkService: NSObject, NetworkServiceProtocol {
     // MARK: - Private Properties
     private let imageCache = NSCache<NSURL, UIImage>()
+    private let dataCache = NSCache<NSURL, NSData>()
     private let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -31,6 +32,16 @@ final class NetworkService: NSObject, NetworkServiceProtocol {
             return
         }
         
+        if let cachedData = dataCache.object(forKey: url as NSURL) {
+            do {
+                let decodedData = try decoder.decode(BaseResponseDTO<T>.self, from: cachedData as Data)
+                completion(.success(decodedData))
+            } catch {
+                completion(.failure(FetchError.decodingFailed(error)))
+            }
+            return
+        }
+        
         let request = URLRequest(url: url)
         
         let task = session.dataTask(with: request) { [weak self] data, response, error in
@@ -44,22 +55,9 @@ final class NetworkService: NSObject, NetworkServiceProtocol {
                 return
             }
             
-            switch response.statusCode {
-            case 200...299:
-                break
-            case 300...399:
-                completion(.failure(FetchError.redirection(statusCode: response.statusCode)))
+            if let badStatusCodeError = self?.checkResponseStatusCode(response.statusCode) {
+                completion(.failure(badStatusCodeError))
                 return
-            case 400...499:
-                let message = HTTPURLResponse.localizedString(forStatusCode: response.statusCode)
-                completion(.failure(FetchError.clientError(statusCode: response.statusCode, message: message)))
-                return
-            case 500...599:
-                let message = HTTPURLResponse.localizedString(forStatusCode: response.statusCode)
-                completion(.failure(FetchError.serverError(statusCode: response.statusCode, message: message)))
-                return
-            default:
-                break
             }
             
             guard let data = data
@@ -73,6 +71,7 @@ final class NetworkService: NSObject, NetworkServiceProtocol {
                     completion(.failure(FetchError.decodingFailed(URLError(.cannotDecodeRawData))))
                     return
                 }
+                self?.dataCache.setObject(data as NSData, forKey:  url as NSURL)
                 completion(.success(decodedData))
             } catch {
                 completion(.failure(FetchError.decodingFailed(error)))
@@ -96,11 +95,50 @@ final class NetworkService: NSObject, NetworkServiceProtocol {
             return
         }
         
-        guard let data = try? Data(contentsOf: secureURL), let image = UIImage(data: data) else {
-            completion(.failure(FetchError.decodingFailed(URLError(.cannotDecodeRawData))))
-            return
+        let task = session.dataTask(with: secureURL) { [weak self] data, response, error in
+            if let error = error {
+                completion(.failure(FetchError.requestFailed(error)))
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse else {
+                completion(.failure(FetchError.badURL))
+                return
+            }
+            
+            if let badStatusCodeError = self?.checkResponseStatusCode(response.statusCode) {
+                completion(.failure(badStatusCodeError))
+                return
+            }
+            
+            guard let data = data, let image = UIImage(data: data)
+            else {
+                completion(.failure(FetchError.noData))
+                return
+            }
+            self?.imageCache.setObject(image, forKey:  secureURL as NSURL)
+            completion(.success(image))
         }
-        imageCache.setObject(image, forKey:  secureURL as NSURL)
-        completion(.success(image))
+        task.resume()
+    }
+}
+
+private extension NetworkService {
+    func checkResponseStatusCode(_ statusCode: Int) -> Error? {
+        switch statusCode {
+        case 200...299:
+            break
+        case 300...399:
+            return FetchError.redirection(statusCode: statusCode)
+        case 400...499:
+            let message = HTTPURLResponse.localizedString(forStatusCode: statusCode)
+            return FetchError.clientError(statusCode: statusCode, message: message)
+        case 500...599:
+            let message = HTTPURLResponse.localizedString(forStatusCode: statusCode)
+            return FetchError.serverError(statusCode: statusCode, message: message)
+        default:
+            break
+        }
+        return nil
     }
 }
