@@ -11,7 +11,8 @@ struct Comic {
     let id: Int
     let digitalId: Int
     let title: String
-    let variantDescription: String
+    let defaultDescripion: String?
+    let textObject: String?
     let modified: String
     let isbn: String
     let upc: String
@@ -42,7 +43,8 @@ extension Comic {
         id = dto.id
         digitalId = dto.digitalId
         title = dto.title
-        variantDescription = dto.variantDescription
+        defaultDescripion = dto.description
+        textObject = dto.textObjects.first?.text
         modified = dto.modified
         isbn = dto.isbn
         upc = dto.upc
@@ -58,6 +60,6 @@ extension Comic {
 // MARK: - Extension Descriptable
 extension Comic: Descriptable {
     var description: String {
-        variantDescription
+        textObject ?? defaultDescripion ?? ""
     }
 }

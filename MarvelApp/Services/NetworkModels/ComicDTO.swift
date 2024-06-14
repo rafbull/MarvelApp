@@ -12,6 +12,7 @@ struct ComicDTO: Decodable {
     let digitalId: Int
     let title: String
     let variantDescription: String
+    let description: String?
     let modified: String
     let isbn: String
     let upc: String
@@ -20,7 +21,7 @@ struct ComicDTO: Decodable {
     let issn: String
     let format: String
     let pageCount: Int
-//    let textObjects: [TextObject]
+    let textObjects: [TextObjectDTO]
 //    let series: SeriesDTO
 //    let variants: [SeriesDTO]
 //    let collections: [SeriesDTO]

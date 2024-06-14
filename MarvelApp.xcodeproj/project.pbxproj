@@ -64,6 +64,7 @@
 		20B456372C1B4195005AD068 /* ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B456362C1B4195005AD068 /* ContentType.swift */; };
 		20CA9C4B2C1C34A30005709A /* Descriptable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CA9C4A2C1C34A30005709A /* Descriptable.swift */; };
 		20CA9C4D2C1C46A00005709A /* ContentDetailRoundCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CA9C4C2C1C46A00005709A /* ContentDetailRoundCollectionViewCell.swift */; };
+		20CA9C502C1C66A20005709A /* TextObjectDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CA9C4F2C1C66A20005709A /* TextObjectDTO.swift */; };
 		20FA22BF2C1996CE00851850 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FA22BE2C1996CE00851850 /* SearchViewController.swift */; };
 		20FA22C12C19989D00851850 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FA22C02C19989D00851850 /* SearchView.swift */; };
 		20FA22C52C199C1400851850 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FA22C42C199C1400851850 /* SearchTableViewCell.swift */; };
@@ -151,6 +152,7 @@
 		20B456362C1B4195005AD068 /* ContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentType.swift; sourceTree = "<group>"; };
 		20CA9C4A2C1C34A30005709A /* Descriptable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Descriptable.swift; sourceTree = "<group>"; };
 		20CA9C4C2C1C46A00005709A /* ContentDetailRoundCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDetailRoundCollectionViewCell.swift; sourceTree = "<group>"; };
+		20CA9C4F2C1C66A20005709A /* TextObjectDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextObjectDTO.swift; sourceTree = "<group>"; };
 		20FA22BE2C1996CE00851850 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		20FA22C02C19989D00851850 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		20FA22C42C199C1400851850 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
@@ -400,6 +402,7 @@
 				2084EC782C170E6900F6B8C6 /* SeriesDTO.swift */,
 				2084EC7C2C17113000F6B8C6 /* EventDTO.swift */,
 				204809B12C1643B50003F115 /* ThumbnailDTO.swift */,
+				20CA9C4F2C1C66A20005709A /* TextObjectDTO.swift */,
 			);
 			path = NetworkModels;
 			sourceTree = "<group>";
@@ -815,6 +818,7 @@
 				201768382C14D79D00F762E1 /* SceneDelegate.swift in Sources */,
 				20CA9C4D2C1C46A00005709A /* ContentDetailRoundCollectionViewCell.swift in Sources */,
 				20FA22C52C199C1400851850 /* SearchTableViewCell.swift in Sources */,
+				20CA9C502C1C66A20005709A /* TextObjectDTO.swift in Sources */,
 				20FA22DB2C19AD1900851850 /* SearchContentDTO.swift in Sources */,
 				20FA22BF2C1996CE00851850 /* SearchViewController.swift in Sources */,
 				20FA22F02C19E4FC00851850 /* ContentListView.swift in Sources */,
