@@ -10,16 +10,13 @@ import UIKit
 final class HomeView: UIView {
     // MARK: - Internal Properties
     let activityIndicatorView: UIActivityIndicatorView = {
-        let activityIndicatorView = UIActivityIndicatorView(style: .large)
+        let activityIndicatorView = UIActivityIndicatorView()
         activityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
         return activityIndicatorView
     }()
     
     private(set) lazy var collectionView: UICollectionView = {
-        let collectionView = UICollectionView(
-            frame: .zero,
-            collectionViewLayout: createLayout()
-        )
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.register(
             HomeCoverCollectionViewCell.self,
             forCellWithReuseIdentifier: HomeCoverCollectionViewCell.identifier
@@ -48,12 +45,12 @@ final class HomeView: UIView {
         static let collectionViewCoverSectionContentInsets: NSDirectionalEdgeInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
         static let collectionViewSectionContentInsets: NSDirectionalEdgeInsets = .init(top: 8, leading: 8, bottom: 8, trailing: 8)
         
-        static let ItemsInCoverGroupCount: Int = 1
-        static let ItemsInGroupCount: Int = 2
+        static let itemsInCoverGroupCount: Int = 1
+        static let itemsInGroupCount: Int = 2
         
-        static let GroupHeight: CGFloat = 0.35
-        static let CoverGroupHeight: CGFloat = 0.65
-        static let CharacterGroupHeight: CGFloat = 0.26
+        static let groupHeight: CGFloat = 0.35
+        static let coverGroupHeight: CGFloat = 0.65
+        static let characterGroupHeight: CGFloat = 0.26
         
         static let sectionHeaderHeight: CGFloat = 44
     }
@@ -72,7 +69,7 @@ final class HomeView: UIView {
 
 // MARK: - Private Extension
 private extension HomeView {
-    private func createLayout() -> UICollectionViewLayout {
+    func createLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
             
             let headerSize = NSCollectionLayoutSize(
@@ -87,8 +84,8 @@ private extension HomeView {
             )
             
             let itemsInGroup = sectionIndex == 0 ?
-            UIConstant.ItemsInCoverGroupCount :
-            UIConstant.ItemsInGroupCount
+            UIConstant.itemsInCoverGroupCount :
+            UIConstant.itemsInGroupCount
             
             let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1.0))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -98,11 +95,11 @@ private extension HomeView {
             
             switch sectionIndex {
             case 0:
-                groupHeight = UIConstant.CoverGroupHeight
+                groupHeight = UIConstant.coverGroupHeight
             case 2:
-                groupHeight = UIConstant.CharacterGroupHeight
+                groupHeight = UIConstant.characterGroupHeight
             default:
-                groupHeight = UIConstant.GroupHeight
+                groupHeight = UIConstant.groupHeight
             }
             
             let groupSize = NSCollectionLayoutSize(
@@ -131,7 +128,7 @@ private extension HomeView {
     }
     
     func setupUI() {
-        backgroundColor = .systemBackground
+        backgroundColor = AppColor.background
         addSubview(collectionView)
         addSubview(activityIndicatorView)
         setConstraints()

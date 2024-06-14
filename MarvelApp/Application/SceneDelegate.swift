@@ -17,13 +17,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         let networkService = NetworkService()
+        
         let homeNavigationController = UINavigationController()
         let homeDependencies = HomeAssembly.Dependencies(navigationController: homeNavigationController, networkService: networkService)
         let homeViewController = HomeAssembly.makeModule(with: homeDependencies)
-        
         homeNavigationController.viewControllers = [homeViewController]
         
-        let tabBarController = TabBarController(homeNavigationController, UIViewController(), UIViewController())
+        let searchDataManager = SearchDataManager()
+        let searchNavigationController = UINavigationController()
+        let searchDependencies = SearchAssembly.Dependencies(navigationController: searchNavigationController, dataManager: searchDataManager, networkService: networkService)
+        let searchViewController = SearchAssembly.makeModule(with: searchDependencies)
+        searchNavigationController.viewControllers = [searchViewController]
+        
+//        let tabBarController = TabBarController(homeNavigationController, searchNavigationController, UIViewController())
+        #warning("поставить контроллеры в правильном порядке")
+        let tabBarController = TabBarController(searchNavigationController, homeNavigationController, UIViewController())
         
         window = UIWindow(windowScene: windowScene)
         window?.rootViewController = tabBarController

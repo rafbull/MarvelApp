@@ -10,9 +10,6 @@ import UIKit
 final class HomeCoverCollectionViewCell: UICollectionViewCell {
     static let identifier = String(describing: HomeCoverCollectionViewCell.self)
     
-    // MARK: - Private Constants
-    
-    
     // MARK: - Private Properties
     private let comicImageView: UIImageView = {
         let imageView = UIImageView()

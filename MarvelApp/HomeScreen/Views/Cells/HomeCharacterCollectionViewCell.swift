@@ -10,6 +10,11 @@ import UIKit
 final class HomeCharacterCollectionViewCell: UICollectionViewCell {
     static let identifier = String(describing: HomeCharacterCollectionViewCell.self)
     
+    // MARK: - Private Constants
+    private enum UIConstant {
+        static let characterImageViewWidthMultiplier: CGFloat = 0.8
+    }
+    
     // MARK: - Private Properties
     private let characterImageView: UIImageView = {
         let imageView = UIImageView()
@@ -74,6 +79,10 @@ private extension HomeCharacterCollectionViewCell {
             contentVStackView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
             contentVStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
+            characterImageView.widthAnchor.constraint(
+                equalTo: contentView.widthAnchor,
+                multiplier: UIConstant.characterImageViewWidthMultiplier
+            ),
             characterImageView.heightAnchor.constraint(equalTo: characterImageView.widthAnchor),
         ])
     }

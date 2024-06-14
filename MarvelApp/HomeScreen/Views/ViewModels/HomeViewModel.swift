@@ -5,7 +5,7 @@
 //  Created by Rafis on 10.06.2024.
 //
 
-import UIKit
+import Foundation
 
 struct HomeViewModel {
     let actualComicsHeader = "Actual"

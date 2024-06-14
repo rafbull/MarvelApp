@@ -49,19 +49,17 @@ final class HomeViewController: UIViewController {
     }
 }
 
-// MARK: - Extension UITableViewDelegate
+// MARK: - Extension UICollectionViewDelegate
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        //("Проверка секции и выбор нужного метода")
-        presenter.didTapComic(at: indexPath.item)
-        presenter.didTapCharacter(at: indexPath.item)
+        presenter.didTapContent(at: indexPath)
         
         collectionView.deselectItem(at: indexPath, animated: true)
     }
 }
 
-// MARK: - Extension CarListViewProtocol
+// MARK: - Extension HomeViewProtocol
 extension HomeViewController: HomeViewProtocol {
     func setNavigationBarHidden(_ hidden: Bool, animated: Bool) {
         navigationController?.setNavigationBarHidden(hidden, animated: animated)

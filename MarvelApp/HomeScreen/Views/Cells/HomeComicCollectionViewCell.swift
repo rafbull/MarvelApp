@@ -10,6 +10,11 @@ import UIKit
 final class HomeComicCollectionViewCell: UICollectionViewCell {
     static let identifier = String(describing: HomeComicCollectionViewCell.self)
     
+    // MARK: - Private Constants
+    private enum UIConstant {
+        static let comicImageViewHeightMultiplier: CGFloat = 0.75
+    }
+    
     // MARK: - Private Properties
     private let comicImageView: UIImageView = {
         let imageView = UIImageView()
@@ -72,7 +77,10 @@ private extension HomeComicCollectionViewCell {
             contentVStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             contentVStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
-            comicImageView.heightAnchor.constraint(equalTo: contentVStackView.heightAnchor, multiplier: 0.75),
+            comicImageView.heightAnchor.constraint(
+                equalTo: contentVStackView.heightAnchor,
+                multiplier: UIConstant.comicImageViewHeightMultiplier
+            ),
         ])
     }
 }

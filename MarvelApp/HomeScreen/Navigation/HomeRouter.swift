@@ -17,11 +17,11 @@ final class HomeRouter {
     }
     
     // MARK: - Internal Methods
-    func showComicDetailViewController(with comic: Comic) {
+    func showContentDetailViewController(for contenType: ContentType, with contentID: Int, networkService: NetworkServiceProtocol) {
+        let dependencies = ContentDetailAssembly.Dependencies(navigationController: navigationController, networkService: networkService)
+        let parameters = ContentDetailAssembly.Parameters(contentType: contenType, contentID: contentID)
+        let contentDetailViewController = ContentDetailAssembly.makeModule(with: dependencies, and: parameters)
         
-    }
-    
-    func showComicDetailViewController(with comic: Character) {
-        
+        navigationController.pushViewController(contentDetailViewController, animated: true)
     }
 }
