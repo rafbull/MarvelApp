@@ -23,6 +23,7 @@ struct Character {
 
 }
 
+// MARK: - Extension Initialization
 extension Character {
     init(with dto: CharacterDTO) {
         id = dto.id
@@ -31,5 +32,12 @@ extension Character {
         modified = dto.modified
         thumbnailURL = dto.thumbnail.url
         resourceURI = dto.resourceURI
+    }
+}
+
+// MARK: - Extension Descriptable
+extension Character: Descriptable {
+    var title: String {
+        name
     }
 }

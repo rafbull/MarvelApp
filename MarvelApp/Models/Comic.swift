@@ -36,6 +36,7 @@ struct Comic {
     
 }
 
+// MARK: - Extension Initialization
 extension Comic {
     init(with dto: ComicDTO) {
         id = dto.id
@@ -51,5 +52,12 @@ extension Comic {
         format = dto.format
         pageCount = dto.pageCount
         thumbnailURL = dto.thumbnail.url
+    }
+}
+
+// MARK: - Extension Descriptable
+extension Comic: Descriptable {
+    var description: String {
+        variantDescription
     }
 }

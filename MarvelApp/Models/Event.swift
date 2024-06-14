@@ -26,6 +26,7 @@ struct Event {
 //    let previous: Next?
 }
 
+// MARK: - Extension Initialization
 extension Event {
     init(with dto: EventDTO) {
         id = dto.id
@@ -37,3 +38,6 @@ extension Event {
         thumbnailURL = dto.thumbnail.url
     }
 }
+
+// MARK: - Extension Descriptable
+extension Event: Descriptable { }

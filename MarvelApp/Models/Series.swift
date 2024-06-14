@@ -9,8 +9,8 @@ import Foundation
 
 struct Series {
     let id: Int
-    let title: String?
-    let description: String?
+    let optionalTitle: String?
+    let optionalDescription: String?
     let thumbnailURL: String
     
     //    let creators: CreatorDTO
@@ -20,11 +20,24 @@ struct Series {
     //    let events: EventDTO
 }
 
+// MARK: - Extension Initialization
 extension Series {
     init(with dto: SeriesDTO) {
         id = dto.id
-        title = dto.title
-        description = dto.description
+        optionalTitle = dto.title
+        optionalDescription = dto.description
         thumbnailURL = dto.thumbnail.url
     }
+}
+
+// MARK: - Extension Descriptable
+extension Series: Descriptable {
+    var title: String {
+        optionalTitle ?? ""
+    }
+    
+    var description: String {
+        optionalDescription ?? ""
+    }
+    
 }

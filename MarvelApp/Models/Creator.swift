@@ -23,6 +23,7 @@ struct Creator {
 //    let urls: [URLElement]
 }
 
+// MARK: - Extension Initialization
 extension Creator {
     init(with dto: CreatorDTO) {
         id = dto.id
@@ -31,5 +32,16 @@ extension Creator {
         fullName = dto.fullName
         modified = dto.modified
         thumbnailURL = dto.thumbnail.url
+    }
+}
+
+// MARK: - Extension Descriptable
+extension Creator: Descriptable {
+    var title: String {
+        fullName
+    }
+    
+    var description: String {
+        ""
     }
 }
