@@ -17,11 +17,30 @@ final class HomeRouter {
     }
     
     // MARK: - Internal Methods
-    func showContentDetailViewController(for contenType: ContentType, with contentID: Int, networkService: NetworkServiceProtocol) {
-        let dependencies = ContentDetailAssembly.Dependencies(navigationController: navigationController, networkService: networkService)
+    func showContentDetailViewController(
+        for contenType: ContentType,
+        with contentID: Int,
+        coreDataService: CoreDataServiceProtocol,
+        networkService: NetworkServiceProtocol
+    ) {
+        let dependencies = ContentDetailAssembly.Dependencies(
+            navigationController: navigationController,
+            coreDataService: coreDataService,
+            networkService: networkService
+        )
         let parameters = ContentDetailAssembly.Parameters(contentType: contenType, contentID: contentID)
         let contentDetailViewController = ContentDetailAssembly.makeModule(with: dependencies, and: parameters)
         
         navigationController.pushViewController(contentDetailViewController, animated: true)
+    }
+    
+    func showAlertController() {
+        let alertController = AlertControllerFabric.createAlerController(
+            title: AppConstant.alertTitle,
+            message: AppConstant.alertMessage,
+            actionTitle: AppConstant.alertActionTitle
+        )
+        
+        navigationController.present(alertController, animated: true)
     }
 }
