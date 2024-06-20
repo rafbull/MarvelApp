@@ -9,7 +9,11 @@ import UIKit
 
 final class NetworkService: NSObject, NetworkServiceProtocol {
     // MARK: - Private Properties
-    private let imageCache = NSCache<NSURL, UIImage>()
+    private let imageCache: NSCache<NSURL, UIImage> = {
+        let imageCache = NSCache<NSURL, UIImage>()
+        imageCache.countLimit = 50
+        return imageCache
+    }()
     private let dataCache = NSCache<NSURL, NSData>()
     private let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
