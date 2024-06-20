@@ -13,6 +13,7 @@ final class HomeCharacterCollectionViewCell: UICollectionViewCell {
     // MARK: - Private Constants
     private enum UIConstant {
         static let characterImageViewWidthMultiplier: CGFloat = 0.8
+        static let cornerRadius: CGFloat = 10
     }
     
     // MARK: - Private Properties
@@ -68,16 +69,19 @@ final class HomeCharacterCollectionViewCell: UICollectionViewCell {
 // MARK: - Private Extension
 private extension HomeCharacterCollectionViewCell {
     func setupUI() {
+        backgroundColor = AppColor.cellBackground
+        layer.cornerRadius = UIConstant.cornerRadius
         contentView.addSubview(contentVStackView)
         setConstraints()
     }
     
     func setConstraints() {
+        let contentViewMarginsGuide = contentView.layoutMarginsGuide
         NSLayoutConstraint.activate([
-            contentVStackView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            contentVStackView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
-            contentVStackView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
-            contentVStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            contentVStackView.topAnchor.constraint(equalTo: contentViewMarginsGuide.topAnchor),
+            contentVStackView.leadingAnchor.constraint(equalTo: contentViewMarginsGuide.leadingAnchor),
+            contentVStackView.trailingAnchor.constraint(equalTo: contentViewMarginsGuide.trailingAnchor),
+            contentVStackView.bottomAnchor.constraint(equalTo: contentViewMarginsGuide.bottomAnchor),
             
             characterImageView.widthAnchor.constraint(
                 equalTo: contentView.widthAnchor,

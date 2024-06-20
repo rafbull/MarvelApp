@@ -12,8 +12,8 @@ struct HomeViewModel {
     let charactersHeader = "Characters"
     let monthNoveltiesComicsHeader = "Novelties"
     
-    var coverComics: [HomeComicViewModel]
-    var actualComics: [HomeComicViewModel]
-    var characters: [HomeCharacterViewModel]
-    var monthNoveltiesComics: [HomeComicViewModel]
+    var coverComics: [DescriptableProtocol]
+    var actualComics: [DescriptableProtocol]
+    var characters: [DescriptableProtocol]
+    var monthNoveltiesComics: [DescriptableProtocol]
 }

@@ -13,6 +13,7 @@ final class HomeComicCollectionViewCell: UICollectionViewCell {
     // MARK: - Private Constants
     private enum UIConstant {
         static let comicImageViewHeightMultiplier: CGFloat = 0.75
+        static let cornerRadius: CGFloat = 10
     }
     
     // MARK: - Private Properties
@@ -66,16 +67,19 @@ final class HomeComicCollectionViewCell: UICollectionViewCell {
 // MARK: - Private Extension
 private extension HomeComicCollectionViewCell {
     func setupUI() {
+        backgroundColor = AppColor.cellBackground
+        layer.cornerRadius = UIConstant.cornerRadius
         contentView.addSubview(contentVStackView)
         setConstraints()
     }
     
     func setConstraints() {
+        let contentViewMarginsGuide = contentView.layoutMarginsGuide
         NSLayoutConstraint.activate([
-            contentVStackView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            contentVStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            contentVStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            contentVStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            contentVStackView.topAnchor.constraint(equalTo: contentViewMarginsGuide.topAnchor),
+            contentVStackView.leadingAnchor.constraint(equalTo: contentViewMarginsGuide.leadingAnchor),
+            contentVStackView.trailingAnchor.constraint(equalTo: contentViewMarginsGuide.trailingAnchor),
+            contentVStackView.bottomAnchor.constraint(equalTo: contentViewMarginsGuide.bottomAnchor),
             
             comicImageView.heightAnchor.constraint(
                 equalTo: contentVStackView.heightAnchor,

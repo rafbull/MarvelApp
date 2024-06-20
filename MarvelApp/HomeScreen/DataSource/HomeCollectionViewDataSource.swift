@@ -48,22 +48,26 @@ final class HomeCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         
         switch section {
         case .cover:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCoverCollectionViewCell.identifier, for: indexPath) as? HomeCoverCollectionViewCell else { return defaultCell }
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCoverCollectionViewCell.identifier, for: indexPath) as? HomeCoverCollectionViewCell
+            else { return defaultCell }
             cell.setComicTitle(homeViewModel.coverComics[indexPath.item].title)
             cell.setComicImage(homeViewModel.coverComics[indexPath.item].image)
             return cell
         case .actualComics:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeComicCollectionViewCell.identifier, for: indexPath) as? HomeComicCollectionViewCell else { return defaultCell }
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeComicCollectionViewCell.identifier, for: indexPath) as? HomeComicCollectionViewCell
+            else { return defaultCell }
             cell.setComicTitle(homeViewModel.actualComics[indexPath.item].title)
             cell.setComicImage(homeViewModel.actualComics[indexPath.item].image)
             return cell
         case .characters:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCharacterCollectionViewCell.identifier, for: indexPath) as? HomeCharacterCollectionViewCell else { return defaultCell }
-            cell.setCharacterName(homeViewModel.characters[indexPath.item].name)
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCharacterCollectionViewCell.identifier, for: indexPath) as? HomeCharacterCollectionViewCell
+            else { return defaultCell }
+            cell.setCharacterName(homeViewModel.characters[indexPath.item].title)
             cell.setCharacterImage(homeViewModel.characters[indexPath.item].image)
             return cell
         case .monthNoveltiesComics:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeComicCollectionViewCell.identifier, for: indexPath) as? HomeComicCollectionViewCell else { return defaultCell }
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeComicCollectionViewCell.identifier, for: indexPath) as? HomeComicCollectionViewCell
+            else { return defaultCell }
             cell.setComicTitle(homeViewModel.monthNoveltiesComics[indexPath.item].title)
             cell.setComicImage(homeViewModel.monthNoveltiesComics[indexPath.item].image)
             return cell

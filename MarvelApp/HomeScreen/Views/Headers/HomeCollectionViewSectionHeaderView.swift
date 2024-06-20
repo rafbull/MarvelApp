@@ -1,5 +1,5 @@
 //
-//  ActualComicsSectionHeaderView.swift
+//  HomeCollectionViewSectionHeaderView.swift
 //  MarvelApp
 //
 //  Created by Rafis on 11.06.2024.

@@ -17,6 +17,7 @@ final class HomeView: UIView {
     
     private(set) lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
+        collectionView.showsVerticalScrollIndicator = false
         collectionView.register(
             HomeCoverCollectionViewCell.self,
             forCellWithReuseIdentifier: HomeCoverCollectionViewCell.identifier
@@ -46,11 +47,11 @@ final class HomeView: UIView {
         static let collectionViewSectionContentInsets: NSDirectionalEdgeInsets = .init(top: 8, leading: 8, bottom: 8, trailing: 8)
         
         static let itemsInCoverGroupCount: Int = 1
-        static let itemsInGroupCount: Int = 2
+        static let itemsInGroupCount: Int = 3
         
-        static let groupHeight: CGFloat = 0.35
+        static let groupHeight: CGFloat = 0.25
         static let coverGroupHeight: CGFloat = 0.65
-        static let characterGroupHeight: CGFloat = 0.26
+        static let characterGroupHeight: CGFloat = 0.2
         
         static let sectionHeaderHeight: CGFloat = 44
     }

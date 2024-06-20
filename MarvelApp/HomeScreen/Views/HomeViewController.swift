@@ -52,9 +52,7 @@ final class HomeViewController: UIViewController {
 // MARK: - Extension UICollectionViewDelegate
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         presenter.didTapContent(at: indexPath)
-        
         collectionView.deselectItem(at: indexPath, animated: true)
     }
 }

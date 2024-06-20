@@ -10,6 +10,7 @@ import Foundation
 final class HomePresenter {
     // MARK: - Private Properties
     private let router: HomeRouter
+    private let coreDataService: CoreDataServiceProtocol
     private let networkService: NetworkServiceProtocol
     private var dataSource: HomeCollectionViewDataSource?
     private var homeViewModel = HomeViewModel(coverComics: [], actualComics: [], characters: [], monthNoveltiesComics: [])
@@ -23,8 +24,9 @@ final class HomePresenter {
     }
     
     // MARK: - Initialization
-    init(router: HomeRouter, networkService: NetworkServiceProtocol) {
+    init(router: HomeRouter, coreDataService: CoreDataServiceProtocol, networkService: NetworkServiceProtocol) {
         self.router = router
+        self.coreDataService = coreDataService
         self.networkService = networkService
     }
     
@@ -71,6 +73,7 @@ final class HomePresenter {
         router.showContentDetailViewController(
             for: selectedContentType,
             with: selectedContentID,
+            coreDataService: coreDataService,
             networkService: networkService
         )
     }
@@ -99,26 +102,31 @@ private extension HomePresenter {
         }
     }
     
-    private func getContent<T: Decodable>(for arrayType: ArrayType, from endpoint: Endpoint, dispatchGroup: DispatchGroup, mapResult: @escaping (T) -> Descriptable) {
+    private func getContent<T: Decodable>(
+        for arrayType: ArrayType,
+        from endpoint: Endpoint,
+        dispatchGroup: DispatchGroup,
+        mapResult: @escaping (T) -> DescriptableProtocol
+    ) {
         dispatchGroup.enter()
         networkService.fetch(from: endpoint) { [weak self] (result: Result<BaseResponseDTO<T>, Error>) in
             DispatchQueue.main.async {
                 defer { dispatchGroup.leave() }
                 switch result {
-                case .failure(let error):
-                    print("getContent Bad", error.localizedDescription)
+                case .failure:
+                    self?.router.showAlertController()
                 case .success(let baseResponseDTO):
                     let contents = baseResponseDTO.data.results.map { mapResult($0) }
                     
                     switch arrayType {
                     case .coverComics:
-                        self?.homeViewModel.coverComics = contents.map { .init(id: $0.id, title: $0.title) }
+                        self?.homeViewModel.coverComics = contents
                     case .actualComics:
-                        self?.homeViewModel.actualComics = contents.map { .init(id: $0.id, title: $0.title) }
+                        self?.homeViewModel.actualComics = contents
                     case .characters:
-                        self?.homeViewModel.characters = contents.map { .init(id: $0.id, name: $0.title) }
+                        self?.homeViewModel.characters = contents
                     case .monthNoveltiesComics:
-                        self?.homeViewModel.monthNoveltiesComics = contents.map { .init(id: $0.id, title: $0.title) }
+                        self?.homeViewModel.monthNoveltiesComics = contents
                     }
                     
                     contents.enumerated().forEach {
@@ -129,14 +137,19 @@ private extension HomePresenter {
         }
     }
     
-    private func fetchAndSetImage(from urlString: String, index: Int, arrayType: ArrayType, dispatchGroup: DispatchGroup) {
+    private func fetchAndSetImage(
+        from urlString: String,
+        index: Int,
+        arrayType: ArrayType,
+        dispatchGroup: DispatchGroup
+    ) {
         dispatchGroup.enter()
         networkService.fetchImage(from: urlString) { [weak self] result in
             DispatchQueue.main.async {
                 defer { dispatchGroup.leave() }
                 switch result {
                 case .failure:
-                    print("fetchAndSetImage Bad")
+                    break
                 case .success(let image):
                     switch arrayType {
                     case .coverComics:
