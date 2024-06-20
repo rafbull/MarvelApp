@@ -12,4 +12,5 @@ enum AppColor {
     static let accentColor = UIColor.convertFromHex(0xE50B14, alpha: 1.0)
     static let coverComicFontColor = UIColor.white
     static let fontColor = UIColor.label
+    static let cellBackground = UIColor.systemGray6
 }
