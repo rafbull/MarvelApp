@@ -11,6 +11,7 @@ final class SearchAssembly {
     struct Dependencies {
         let navigationController: UINavigationController
         let dataManager: SearchDataManagerProtocol
+        let coreDataService: CoreDataServiceProtocol
         let networkService: NetworkServiceProtocol
     }
     
@@ -19,6 +20,7 @@ final class SearchAssembly {
         let presenter = SearchPresenter(
             router: router,
             dataManager: dependecies.dataManager,
+            coreDataService: dependecies.coreDataService,
             networkService: dependecies.networkService
         )
         let viewController = SearchViewController(presenter: presenter)

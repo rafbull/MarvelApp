@@ -41,11 +41,9 @@ extension SearchResultTableViewController {
         else { return UITableViewCell() }
         
         let searchResultContent = presenter.getSearchResultContent(at: indexPath.row)
-
-        var configuration = cell.defaultContentConfiguration()
-        configuration.text = searchResultContent?.title
-        configuration.image = searchResultContent?.image
-        cell.contentConfiguration = configuration
+        
+        cell.setContentImage(searchResultContent?.image)
+        cell.setContentTitle(searchResultContent?.title)
 
         return cell
     }

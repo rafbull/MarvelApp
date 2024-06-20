@@ -13,12 +13,14 @@ final class SearchTableViewCell: UITableViewCell {
     // MARK: - Private Constants
     private enum UIConstant {
         static let contentImageViewHeightMultiplier: CGFloat = 0.4
+        static let cornerRadius: CGFloat = 10
     }
     
     // MARK: - Private Properties
     private let contentImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = UIConstant.cornerRadius
         imageView.layer.masksToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -63,7 +65,6 @@ private extension SearchTableViewCell {
     
     func setConstraints() {
         let contentMargin = contentView.layoutMarginsGuide
-        
         NSLayoutConstraint.activate([
             contentImageView.topAnchor.constraint(equalTo: contentMargin.topAnchor),
             contentImageView.leadingAnchor.constraint(equalTo: contentMargin.leadingAnchor),

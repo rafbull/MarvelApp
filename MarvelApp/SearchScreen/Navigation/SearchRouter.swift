@@ -17,16 +17,33 @@ final class SearchRouter {
     }
     
     // MARK: - Internal Methods
-    func showContentListViewController(with contentType: ContentType, _ networkService: NetworkServiceProtocol) {
+    func showContentListViewController(
+        with contentType: ContentType,
+        coreDataService: CoreDataServiceProtocol,
+        networkService: NetworkServiceProtocol
+    ) {
         let parameters = ContentListAssembly.Parameters(contentType: contentType)
-        let dependencies = ContentListAssembly.Dependencies(navigationController: navigationController, networkService: networkService)
+        let dependencies = ContentListAssembly.Dependencies(
+            navigationController: navigationController,
+            coreDataService: coreDataService,
+            networkService: networkService
+        )
         let contentListViewControler = ContentListAssembly.makeModule(with: dependencies, and: parameters)
         
         navigationController.pushViewController(contentListViewControler, animated: true)
     }
     
-    func showContentDetailViewController(for contenType: ContentType, with contentID: Int, networkService: NetworkServiceProtocol) {
-        let dependencies = ContentDetailAssembly.Dependencies(navigationController: navigationController, networkService: networkService)
+    func showContentDetailViewController(
+        for contenType: ContentType,
+        with contentID: Int,
+        coreDataService: CoreDataServiceProtocol,
+        networkService: NetworkServiceProtocol
+    ) {
+        let dependencies = ContentDetailAssembly.Dependencies(
+            navigationController: navigationController,
+            coreDataService: coreDataService,
+            networkService: networkService
+        )
         let parameters = ContentDetailAssembly.Parameters(contentType: contenType, contentID: contentID)
         let contentDetailViewController = ContentDetailAssembly.makeModule(with: dependencies, and: parameters)
         

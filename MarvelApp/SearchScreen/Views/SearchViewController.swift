@@ -52,7 +52,6 @@ extension SearchViewController: UISearchResultsUpdating {
 extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presenter.didTapContent(at: indexPath.row)
-        
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

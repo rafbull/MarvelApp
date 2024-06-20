@@ -19,6 +19,7 @@ final class SearchView: UIView {
     
     private(set) lazy var tableView: UITableView = {
         let tableView = UITableView()
+        tableView.showsVerticalScrollIndicator = false
         tableView.separatorStyle = .none
         tableView.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.identifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false

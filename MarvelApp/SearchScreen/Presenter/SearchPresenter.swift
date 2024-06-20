@@ -11,6 +11,7 @@ final class SearchPresenter {
     // MARK: - Private Properties
     private let router: SearchRouter
     private let dataManager: SearchDataManagerProtocol
+    private let coreDataService: CoreDataServiceProtocol
     private let networkService: NetworkServiceProtocol
     private var dataSource: SearchTableViewDataSource?
     private var searchContentViewModels = [SearchContentViewModel]()
@@ -19,7 +20,13 @@ final class SearchPresenter {
     private weak var searchResultUI: SearchResultViewProtocol?
     
     // MARK: - Initialization
-    init(router: SearchRouter, dataManager: SearchDataManagerProtocol, networkService: NetworkServiceProtocol) {
+    init(
+        router: SearchRouter,
+        dataManager: SearchDataManagerProtocol,
+        coreDataService: CoreDataServiceProtocol,
+        networkService: NetworkServiceProtocol
+    ) {
+        self.coreDataService = coreDataService
         self.router = router
         self.dataManager = dataManager
         self.networkService = networkService
@@ -38,7 +45,11 @@ final class SearchPresenter {
     func didTapContent(at index: Int) {
         guard index < searchContentViewModels.count else { return }
         let contentType = ContentType.allCases[index]
-        router.showContentListViewController(with: contentType, networkService)
+        router.showContentListViewController(
+            with: contentType,
+            coreDataService: coreDataService,
+            networkService: networkService
+        )
     }
     
     func didTapSearchResultContent(at index: Int) {
@@ -47,13 +58,19 @@ final class SearchPresenter {
         router.showContentDetailViewController(
             for: .character,
             with: searchResultContentID,
+            coreDataService: coreDataService,
             networkService: networkService
         )
     }
     
     func didEnterSerchText(_ searchText: String) {
         guard searchText.isEmpty == false else { return }
-        getSearchResults(for: searchText)
+        let dispatchGroup = DispatchGroup()
+        getSearchResults(for: searchText, dispatchGroup: dispatchGroup)
+        
+        dispatchGroup.notify(queue: .main) { [weak self] in
+            self?.searchResultUI?.reloadData()
+        }
     }
     
     func getSearchResultTableViewRowsCount() -> Int {
@@ -62,7 +79,6 @@ final class SearchPresenter {
     
     func getSearchResultContent(at index: Int) -> SearchResultContentViewModel? {
         guard index < searchResultContentViewModels.count else { return nil }
-        
         return searchResultContentViewModels[index]
     }
 }
@@ -72,32 +88,54 @@ private extension SearchPresenter {
     func loadData() {
         dataManager.loadData { [weak self] result in
             switch result {
+            case .failure:
+                break
             case .success(let searchContentDTOArray):
-                let searchContentViewModels = searchContentDTOArray.map { SearchContentViewModel(with: $0) }
-                self?.searchContentViewModels = searchContentViewModels
-                self?.dataSource = SearchTableViewDataSource(searchContentViewModels)
+                self?.searchContentViewModels = searchContentDTOArray.map { .init(with: $0) }
                 self?.setupUIDataSource()
-            case .failure(let error):
-                print(error.localizedDescription)
             }
         }
     }
     
     func setupUIDataSource() {
-        guard let dataSource = dataSource else { return }
+        dataSource = SearchTableViewDataSource(searchContentViewModels)
         ui?.setupDataSource(with: dataSource)
     }
     
-    func getSearchResults(for searchText: String) {
-        networkService.fetch(from: .character(searchText)) { [weak self] (result: Result<BaseResponseDTO<CharacterDTO>, Error>) in
+    func getSearchResults(for searchText: String, dispatchGroup: DispatchGroup) {
+        dispatchGroup.enter()
+        networkService.fetch(
+            from: .character(searchText)
+        ) { [weak self] (result: Result<BaseResponseDTO<CharacterDTO>, Error>) in
             DispatchQueue.main.async {
+                defer { dispatchGroup.leave() }
                 switch result {
                 case .failure:
-                    print("getSearchResults Bad")
+                    break
                 case .success(let baseResponseDTO):
                     let characters = baseResponseDTO.data.results.map { Character(with: $0) }
-                    self?.searchResultContentViewModels = characters.map { .init(id: $0.id, title: $0.name)}
-                    self?.searchResultUI?.reloadData()
+                    self?.searchResultContentViewModels = characters.map { .init(id: $0.id, title: $0.name) }
+                    
+                    characters.enumerated().forEach {
+                        self?.fetchAndSetImage(from: $1.thumbnailURL, index: $0, dispatchGroup: dispatchGroup)
+                    }
+                }
+            }
+        }
+    }
+    
+    func fetchAndSetImage(from urlString: String, index: Int, dispatchGroup: DispatchGroup) {
+        dispatchGroup.enter()
+        networkService.fetchImage(from: urlString) { [weak self] result in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                defer { dispatchGroup.leave() }
+                switch result {
+                case .failure:
+                    break
+                case .success(let image):
+                    guard index < self.searchResultContentViewModels.count else { return }
+                    self.searchResultContentViewModels[index].image = image
                 }
             }
         }

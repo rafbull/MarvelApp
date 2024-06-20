@@ -12,6 +12,7 @@ struct SearchContentViewModel {
     var image: UIImage?
 }
 
+// MARK: - Extension Initialization With DTO
 extension SearchContentViewModel {
     init(with dto: SearchContentDTO) {
         title = dto.title

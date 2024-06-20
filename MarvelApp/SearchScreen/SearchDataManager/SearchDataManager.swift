@@ -7,10 +7,6 @@
 
 import Foundation
 
-protocol SearchDataManagerProtocol {
-    func loadData(completion: @escaping (Result<[SearchContentDTO], Error>) -> Void)
-}
-
 final class SearchDataManager: SearchDataManagerProtocol {
     // MARK: - Internal Methods
     func loadData(completion: @escaping (Result<[SearchContentDTO], Error>) -> Void) {
@@ -28,7 +24,6 @@ private extension SearchDataManager {
             completion(.failure(FetchError.badURL))
             return
         }
-        
         do {
             let data = try Data(contentsOf: url)
             let searchContentDTOArray = try JSONDecoder().decode([SearchContentDTO].self, from: data)
