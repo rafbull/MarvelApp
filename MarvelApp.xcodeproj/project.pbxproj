@@ -282,6 +282,7 @@
 		201768342C14D79D00F762E1 /* MarvelApp */ = {
 			isa = PBXGroup;
 			children = (
+				205D1AE22C247A88009AD2E8 /* Onboarding */,
 				2017684D2C14D83F00F762E1 /* Application */,
 				204A9A312C18E144002500BA /* TabBarController */,
 				204A9A2E2C18D227002500BA /* Extensions */,
@@ -498,6 +499,13 @@
 				204A9A322C18E172002500BA /* TabBarController.swift */,
 			);
 			path = TabBarController;
+			sourceTree = "<group>";
+		};
+		205D1AE22C247A88009AD2E8 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		206E0B592C2174D100B30BB4 /* Fabrics */ = {
