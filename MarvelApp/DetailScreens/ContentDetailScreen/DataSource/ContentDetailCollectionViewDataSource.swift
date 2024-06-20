@@ -54,34 +54,22 @@ final class ContentDetailCollectionViewDataSource: NSObject, UICollectionViewDat
             
             cell.setContentImage(contentDetailViewModel.description?.image)
             cell.setContentTitle(contentDetailViewModel.description?.title)
-            cell.setContentDescription(contentDetailViewModel.description?.decription)
+            cell.setContentDescription(contentDetailViewModel.description?.description)
             return cell
         case .firstContent:
             guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: ContentDetailOtherContentCollectionViewCell.identifier,
+                withReuseIdentifier: ContentDetailAdditionalContentCollectionViewCell.identifier,
                 for: indexPath
-            ) as? ContentDetailOtherContentCollectionViewCell
+            ) as? ContentDetailAdditionalContentCollectionViewCell
             else { return defaultCell }
             cell.setContentImage(contentDetailViewModel.firstContent[indexPath.item].image)
             cell.setContentTitle(contentDetailViewModel.firstContent[indexPath.item].title)
             return cell
-
-            // TODO: - Добавить круглые ячейки, если это character"
-            
-//            guard let cell = collectionView.dequeueReusableCell(
-//                withReuseIdentifier: ContentDetailRoundCollectionViewCell.identifier,
-//                for: indexPath
-//            ) as? ContentDetailRoundCollectionViewCell
-//            else { return defaultCell }
-//            cell.setContentImage(contentDetailViewModel.firstContent[indexPath.item].image)
-//            cell.setContentTitle(contentDetailViewModel.firstContent[indexPath.item].title)
-//            return cell
-            
         case .secondContent:
             guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: ContentDetailOtherContentCollectionViewCell.identifier,
+                withReuseIdentifier: ContentDetailAdditionalContentCollectionViewCell.identifier,
                 for: indexPath
-            ) as? ContentDetailOtherContentCollectionViewCell
+            ) as? ContentDetailAdditionalContentCollectionViewCell
             else { return defaultCell }
             cell.setContentImage(contentDetailViewModel.secondContent[indexPath.item].image)
             cell.setContentTitle(contentDetailViewModel.secondContent[indexPath.item].title)

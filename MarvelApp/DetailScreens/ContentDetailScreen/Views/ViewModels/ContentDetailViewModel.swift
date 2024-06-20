@@ -8,10 +8,11 @@
 import Foundation
 
 struct ContentDetailViewModel {
-    var firstContentHeader: String
-    var secondContentHeader: String
+    var isFavorite: Bool
+    let firstContentHeader: String
+    let secondContentHeader: String
     
-    var description: ContentDetailDescriptionViewModel?
-    var firstContent: [ContentDetailOtherContentViewModel]
-    var secondContent: [ContentDetailOtherContentViewModel]
+    var description: DescriptableProtocol?
+    var firstContent: [AdditionalContent]
+    var secondContent: [AdditionalContent]
 }

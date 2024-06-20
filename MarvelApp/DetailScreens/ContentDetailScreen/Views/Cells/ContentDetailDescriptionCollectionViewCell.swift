@@ -12,7 +12,7 @@ final class ContentDetailDescriptionCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Private Constants
     private enum UIConstant {
-        static let contentImageViewHeightMultiplier: CGFloat = 0.75
+        static let contentImageViewHeightMultiplier: CGFloat = 1.3
         static let contentVStackViewSpacing: CGFloat = 8
     }
     
@@ -76,7 +76,7 @@ final class ContentDetailDescriptionCollectionViewCell: UICollectionViewCell {
     }
     
     func setContentDescription(_ description: String?) {
-        contentDescriptionLabel.text = description
+        contentDescriptionLabel.text = description?.htmlToString
     }
 }
 
@@ -97,7 +97,7 @@ private extension ContentDetailDescriptionCollectionViewCell {
             contentDescriptionLabel.widthAnchor.constraint(equalTo: contentView.layoutMarginsGuide.widthAnchor),
             
             contentImageView.heightAnchor.constraint(
-                equalTo: contentVStackView.heightAnchor,
+                equalTo: contentVStackView.widthAnchor,
                 multiplier: UIConstant.contentImageViewHeightMultiplier
             ),
         ])

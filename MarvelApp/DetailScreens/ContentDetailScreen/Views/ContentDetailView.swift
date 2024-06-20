@@ -17,19 +17,15 @@ final class ContentDetailView: UIView {
     
     private(set) lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
+        collectionView.showsVerticalScrollIndicator = false
         collectionView.register(
             ContentDetailDescriptionCollectionViewCell.self,
             forCellWithReuseIdentifier: ContentDetailDescriptionCollectionViewCell.identifier
         )
         collectionView.register(
-            ContentDetailRoundCollectionViewCell.self,
-            forCellWithReuseIdentifier: ContentDetailRoundCollectionViewCell.identifier
+            ContentDetailAdditionalContentCollectionViewCell.self,
+            forCellWithReuseIdentifier: ContentDetailAdditionalContentCollectionViewCell.identifier
         )
-        collectionView.register(
-            ContentDetailOtherContentCollectionViewCell.self,
-            forCellWithReuseIdentifier: ContentDetailOtherContentCollectionViewCell.identifier
-        )
-        
         collectionView.register(
             ContentDetailCollectionViewSectionHeaderView.self,
             forSupplementaryViewOfKind: ContentDetailCollectionViewSectionHeaderView.headerKind,
@@ -47,11 +43,13 @@ final class ContentDetailView: UIView {
         static let collectionViewSectionContentInsets: NSDirectionalEdgeInsets = .init(top: 8, leading: 8, bottom: 8, trailing: 8)
         
         static let itemsInDescriptionGroupCount: Int = 1
-        static let itemsInGroupCount: Int = 2
+        static let itemsInGroupCount: Int = 3
         
-        static let groupHeight: CGFloat = 0.35
-        static let descriptionGroupHeight: CGFloat = 0.65
-//        static let contentGroupHeight: CGFloat = 0.26
+        
+        static let descriptionItemHeight: NSCollectionLayoutDimension = .estimated(44)
+        static let itemHeight: NSCollectionLayoutDimension = .fractionalHeight(1.0)
+        static let descriptionGroupHeight: NSCollectionLayoutDimension = .estimated(44)
+        static let groupHeight: NSCollectionLayoutDimension = .fractionalHeight(0.25)
         
         static let sectionHeaderHeight: CGFloat = 44
     }
@@ -71,7 +69,8 @@ final class ContentDetailView: UIView {
 // MARK: - Private Extension
 private extension ContentDetailView {
     func createLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
+        let layout = UICollectionViewCompositionalLayout { [weak self] sectionIndex, _ in
+            guard self?.collectionView.numberOfItems(inSection: sectionIndex) != 0 else { return nil }
             
             let headerSize = NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1.0),
@@ -88,23 +87,24 @@ private extension ContentDetailView {
             UIConstant.itemsInDescriptionGroupCount :
             UIConstant.itemsInGroupCount
             
-            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1.0))
-            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            
-            let groupHeight: CGFloat
+            let itemHeight: NSCollectionLayoutDimension
+            let groupHeight: NSCollectionLayoutDimension
             
             switch sectionIndex {
             case 0:
+                itemHeight = UIConstant.descriptionItemHeight
                 groupHeight = UIConstant.descriptionGroupHeight
-//            case 2:
-//                groupHeight = UIConstant.contentGroupHeight
             default:
+                itemHeight = UIConstant.itemHeight
                 groupHeight = UIConstant.groupHeight
             }
             
+            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: itemHeight)
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            
             let groupSize = NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1.0),
-                heightDimension: .fractionalHeight(groupHeight)
+                heightDimension: groupHeight
             )
             
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: itemsInGroup)

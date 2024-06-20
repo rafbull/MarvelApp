@@ -15,12 +15,19 @@ final class ContentDetailAssembly {
     
     struct Dependencies {
         let navigationController: UINavigationController
+        let coreDataService: CoreDataServiceProtocol
         let networkService: NetworkServiceProtocol
     }
     
     static func makeModule(with dependecies: Dependencies, and parameters: Parameters) -> UIViewController {
         let router = ContentDetailRouter(navigationController: dependecies.navigationController)
-        let presenter = ContentDetailPresenter(contentType: parameters.contentType, contentID: parameters.contentID, router: router, networkService: dependecies.networkService)
+        let presenter = ContentDetailPresenter(
+            contentType: parameters.contentType,
+            contentID: parameters.contentID,
+            router: router,
+            coreDataService: dependecies.coreDataService,
+            networkService: dependecies.networkService
+        )
         let viewController = ContentDetailViewController(presenter: presenter)
         
         return viewController

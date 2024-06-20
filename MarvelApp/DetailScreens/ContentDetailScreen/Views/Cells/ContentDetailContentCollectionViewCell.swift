@@ -1,5 +1,5 @@
 //
-//  ContentDetailContentCollectionViewCell.swift
+//  ContentDetailAdditionalContentCollectionViewCell.swift
 //  MarvelApp
 //
 //  Created by Rafis on 12.06.2024.
@@ -7,12 +7,13 @@
 
 import UIKit
 
-final class ContentDetailOtherContentCollectionViewCell: UICollectionViewCell {
-    static let identifier = String(describing: ContentDetailOtherContentCollectionViewCell.self)
+final class ContentDetailAdditionalContentCollectionViewCell: UICollectionViewCell {
+    static let identifier = String(describing: ContentDetailAdditionalContentCollectionViewCell.self)
     
     // MARK: - Private Constants
     private enum UIConstant {
         static let contentImageViewHeightMultiplier: CGFloat = 0.75
+        static let cornerRadius: CGFloat = 10
     }
     
     // MARK: - Private Properties
@@ -64,18 +65,21 @@ final class ContentDetailOtherContentCollectionViewCell: UICollectionViewCell {
 }
 
 // MARK: - Private Extension
-private extension ContentDetailOtherContentCollectionViewCell {
+private extension ContentDetailAdditionalContentCollectionViewCell {
     func setupUI() {
+        backgroundColor = AppColor.cellBackground
+        layer.cornerRadius = UIConstant.cornerRadius
         contentView.addSubview(contentVStackView)
         setConstraints()
     }
     
     func setConstraints() {
+        let contentViewMarginsGuide = contentView.layoutMarginsGuide
         NSLayoutConstraint.activate([
-            contentVStackView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            contentVStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            contentVStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            contentVStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            contentVStackView.topAnchor.constraint(equalTo: contentViewMarginsGuide.topAnchor),
+            contentVStackView.leadingAnchor.constraint(equalTo: contentViewMarginsGuide.leadingAnchor),
+            contentVStackView.trailingAnchor.constraint(equalTo: contentViewMarginsGuide.trailingAnchor),
+            contentVStackView.bottomAnchor.constraint(equalTo: contentViewMarginsGuide.bottomAnchor),
             
             contentImageView.heightAnchor.constraint(
                 equalTo: contentVStackView.heightAnchor,
