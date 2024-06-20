@@ -7,7 +7,6 @@
 
 import Foundation
 
-#warning("убрать неиспользуемые эндроинты")
 enum Endpoint {
     case comics
     case characters
@@ -109,7 +108,7 @@ private extension Endpoint {
                 URLQueryItem(name: "noVariants", value: "true"),
                 URLQueryItem(name: "dateDescriptor", value: "thisWeek"),
                 URLQueryItem(name: "hasDigitalIssue", value: "true"),
-                URLQueryItem(name: "orderBy", value: "focDate"),
+                URLQueryItem(name: "orderBy", value: "title"),
                 URLQueryItem(name: "limit", value: "3")
             ])
         case .monthNoveltiesComics:

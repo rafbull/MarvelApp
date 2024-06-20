@@ -13,12 +13,4 @@ struct CharacterDTO: Decodable {
     let description: String
     let modified: String
     let thumbnail: ThumbnailDTO
-    let resourceURI: String
-
-//    let comics: Comics
-//    let series: Comics
-//    let stories: Stories
-//    let events: Comics
-//    let urls: [URLElement]
-
 }

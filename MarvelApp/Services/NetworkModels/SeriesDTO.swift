@@ -12,10 +12,4 @@ struct SeriesDTO: Decodable {
     let title: String?
     let description: String?
     let thumbnail: ThumbnailDTO
-    
-    //    let creators: CreatorDTO
-    //    let characters: CharacterDTO
-    //    let stories: StoryDTO
-    //    let comics: ComicDTO
-    //    let events: EventDTO
 }
