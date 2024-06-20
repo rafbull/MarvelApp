@@ -19,6 +19,7 @@ final class ContentDetailPresenter {
     
     private lazy var contentDetailViewModel: ContentDetailViewModel = {
         let contentDetailViewModel = ContentDetailViewModel(
+            isFavorite: false,
             firstContentHeader: contentType.firstAdditionalContent.rawValue,
             secondContentHeader: contentType.secondAdditionalContent.rawValue,
             description: nil,
@@ -52,7 +53,26 @@ final class ContentDetailPresenter {
     // MARK: - Internal Methods
     func didLoad(ui: ContentDetailViewProtocol) {
         self.ui = ui
-        loadData()
+        ui.startLoadingAnimation()
+        ui.disableRightBarButton()
+        
+        loadDataFromDataBase()
+    }
+    
+    func uiWillAppear() {
+        checkIfIsFavorite()
+    }
+    
+    func didTapRightBarButtonItem() {
+        ui?.disableRightBarButton()
+        
+        if contentDetailViewModel.isFavorite {
+            removeFromFavorite()
+            ui?.setNotFavoriteButtonType()
+        } else {
+            saveToFavorite()
+            ui?.setFavoriteButtonType()
+        }
     }
     
     func didTapContent(at indexPath: IndexPath) {
@@ -224,6 +244,7 @@ private extension ContentDetailPresenter {
         
         dispatchGroup.notify(queue: .main) { [weak self] in
             self?.ui?.stopLoadingAnimation()
+            self?.ui?.enableRightBarButton()
             self?.setupUIDataSource()
         }
     }
@@ -356,6 +377,35 @@ private extension ContentDetailPresenter {
                     }
                 }
             }
+        }
+    }
+}
+
+// MARK: - Private Extension
+private extension ContentDetailPresenter {
+    func checkIfIsFavorite() {
+        switch contentType {
+        case .comic:
+            coreDataService.fetchComic(with: contentID) { updateIsFavoriteState($0) }
+        case .character:
+            coreDataService.fetchCharacter(with: contentID) { updateIsFavoriteState($0) }
+        case .creator:
+            coreDataService.fetchCreator(with: contentID) { updateIsFavoriteState($0) }
+        case .series:
+            coreDataService.fetchSeries(with: contentID) { updateIsFavoriteState($0) }
+        case .event:
+            coreDataService.fetchEvent(with: contentID) { updateIsFavoriteState($0) }
+        }
+    }
+    
+    func updateIsFavoriteState<T: DescriptableProtocol>(_ result: Result<T, Error>) {
+        switch result {
+        case .success:
+            contentDetailViewModel.isFavorite = true
+            ui?.setFavoriteButtonType()
+        case .failure:
+            contentDetailViewModel.isFavorite = false
+            ui?.setNotFavoriteButtonType()
         }
     }
 }

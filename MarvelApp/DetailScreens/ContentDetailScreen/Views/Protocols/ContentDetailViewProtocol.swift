@@ -12,4 +12,10 @@ protocol ContentDetailViewProtocol: AnyObject {
     
     func startLoadingAnimation()
     func stopLoadingAnimation()
+    
+    func setFavoriteButtonType()
+    func setNotFavoriteButtonType()
+    
+    func enableRightBarButton()
+    func disableRightBarButton()
 }

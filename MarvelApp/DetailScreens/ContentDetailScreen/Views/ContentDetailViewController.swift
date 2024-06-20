@@ -16,6 +16,12 @@ final class ContentDetailViewController: UIViewController {
         return contentView
     }()
     
+    // MARK: - Private Constants
+    private enum UIConstant {
+        static let favoriteImage = UIImage(systemName: "bolt.heart.fill")
+        static let notFavoriteImage = UIImage(systemName: "bolt.heart")
+    }
+    
     // MARK: - Initialization
     init(presenter: ContentDetailPresenter) {
         self.presenter = presenter
@@ -34,8 +40,13 @@ final class ContentDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter.didLoad(ui: self)
         setupUI()
+        presenter.didLoad(ui: self)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter.uiWillAppear()
     }
 }
 
@@ -50,6 +61,8 @@ extension ContentDetailViewController: UICollectionViewDelegate {
 
 // MARK: - Extension HomeViewProtocol
 extension ContentDetailViewController: ContentDetailViewProtocol {
+    
+    
     func setupDataSource(with dataSource: UICollectionViewDataSource?) {
         contentView.collectionView.dataSource = dataSource
     }
@@ -63,11 +76,42 @@ extension ContentDetailViewController: ContentDetailViewProtocol {
         contentView.collectionView.isHidden = false
         contentView.activityIndicatorView.stopAnimating()
     }
+    
+    func setFavoriteButtonType() {
+        navigationItem.rightBarButtonItem?.image = UIConstant.favoriteImage
+    }
+    
+    func setNotFavoriteButtonType() {
+        navigationItem.rightBarButtonItem?.image = UIConstant.notFavoriteImage
+    }
+    
+    func enableRightBarButton() {
+        navigationItem.rightBarButtonItem?.isEnabled = true
+    }
+    
+    func disableRightBarButton() {
+        navigationItem.rightBarButtonItem?.isEnabled = false
+    }
 }
 
 // MARK: - Private Extension
 private extension ContentDetailViewController {
     func setupUI() {
         navigationController?.navigationBar.tintColor = AppColor.accentColor
+        setupRightBarButtonItem()
+    }
+    
+    func setupRightBarButtonItem() {
+        navigationItem.rightBarButtonItem = .init(
+            image: UIConstant.notFavoriteImage,
+            style: .plain,
+            target: self,
+            action: #selector(didTapRightBarButtonItem)
+        )
+        navigationItem.rightBarButtonItem?.tintColor = AppColor.accentColor
+    }
+    
+    @objc func didTapRightBarButtonItem() {
+        presenter.didTapRightBarButtonItem()
     }
 }
