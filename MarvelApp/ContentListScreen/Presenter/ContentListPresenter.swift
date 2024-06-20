@@ -11,13 +11,20 @@ final class ContentListPresenter {
     // MARK: - Private Properties
     private let contentType: ContentType
     private let router: ContentListRouter
+    private let coreDataService: CoreDataServiceProtocol
     private let networkService: NetworkServiceProtocol
     private var dataSource: ContentListCollectionViewDataSource?
     private var contentListViewModels = [ContentListViewModel]()
     private weak var ui: ContentListViewProtocol?
     
     // MARK: - Initialization
-    init(contentType: ContentType, router: ContentListRouter, networkService: NetworkServiceProtocol) {
+    init(
+        contentType: ContentType,
+        router: ContentListRouter,
+        coreDataService: CoreDataServiceProtocol,
+        networkService: NetworkServiceProtocol
+    ) {
+        self.coreDataService = coreDataService
         self.contentType = contentType
         self.router = router
         self.networkService = networkService
@@ -34,7 +41,12 @@ final class ContentListPresenter {
         guard index < contentListViewModels.count else { return }
         let contentId = contentListViewModels[index].id
         
-        router.showContentDetailViewController(for: contentType, with: contentId, networkService: networkService)
+        router.showContentDetailViewController(
+            for: contentType,
+            with: contentId,
+            coreDataService: coreDataService,
+            networkService: networkService
+        )
     }
 }
 
@@ -64,17 +76,22 @@ private extension ContentListPresenter {
         }
     }
     
-    private func getContent<T: Decodable>(from endpoint: Endpoint, dispatchGroup: DispatchGroup, mapResult: @escaping (T) -> Descriptable) {
+    private func getContent<T: Decodable>(
+        from endpoint: Endpoint,
+        dispatchGroup: DispatchGroup,
+        mapResult: @escaping (T) -> DescriptableProtocol
+    ) {
         dispatchGroup.enter()
-        networkService.fetch(from: endpoint) { [weak self] (result: Result<BaseResponseDTO<T>, Error>) in
+        networkService.fetch(
+            from: endpoint
+        ) { [weak self] (result: Result<BaseResponseDTO<T>, Error>) in
             DispatchQueue.main.async {
                 defer { dispatchGroup.leave() }
                 switch result {
-                case .failure(let error):
-                    print("getContent Bad", error.localizedDescription)
+                case .failure:
+                    self?.router.showAlertController()
                 case .success(let baseResponseDTO):
                     let contents = baseResponseDTO.data.results.map { mapResult($0) }
-                    
                     self?.contentListViewModels = contents.map { .init(id: $0.id, title: $0.title) }
                     
                     contents.enumerated().forEach {
@@ -92,7 +109,7 @@ private extension ContentListPresenter {
                 defer { dispatchGroup.leave() }
                 switch result {
                 case .failure:
-                    print("fetchAndSetImage Bad")
+                    break
                 case .success(let image):
                     self?.contentListViewModels[index].image = image
                 }

@@ -23,8 +23,8 @@ final class ContentListCollectionViewDataSource: NSObject, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContentListCollectionViewCell.identifier, for: indexPath) as? ContentListCollectionViewCell
         else { return UICollectionViewCell() }
-            cell.setContentTitle(contentListViewModels[indexPath.item].title)
-            cell.setContentImage(contentListViewModels[indexPath.item].image)
-            return cell
+        cell.setContentTitle(contentListViewModels[indexPath.item].title)
+        cell.setContentImage(contentListViewModels[indexPath.item].image)
+        return cell
     }
 }

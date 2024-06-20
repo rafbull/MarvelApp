@@ -14,12 +14,18 @@ final class ContentListAssembly {
     
     struct Dependencies {
         let navigationController: UINavigationController
+        let coreDataService: CoreDataServiceProtocol
         let networkService: NetworkServiceProtocol
     }
     
     static func makeModule(with dependecies: Dependencies, and parameters: Parameters) -> UIViewController {
         let router = ContentListRouter(navigationController: dependecies.navigationController)
-        let presenter = ContentListPresenter(contentType: parameters.contentType, router: router, networkService: dependecies.networkService)
+        let presenter = ContentListPresenter(
+            contentType: parameters.contentType,
+            router: router,
+            coreDataService: dependecies.coreDataService,
+            networkService: dependecies.networkService
+        )
         let viewController = ContentListViewController(presenter: presenter)
         
         return viewController

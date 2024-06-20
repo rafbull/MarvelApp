@@ -32,7 +32,7 @@ final class ContentListView: UIView {
         static let collectionViewSectionContentInsets: NSDirectionalEdgeInsets = .init(top: 8, leading: 8, bottom: 8, trailing: 8)
         
         static let itemsInGroupCount: Int = 2
-        static let groupHeight: CGFloat = 0.35
+        static let groupHeight: CGFloat = 0.25
     }
     
     // MARK: - Initialization
