@@ -1,5 +1,5 @@
 //
-//  ComicDTO.swift
+//  BaseResponseDTO.swift
 //  MarvelApp
 //
 //  Created by Rafis on 09.06.2024.

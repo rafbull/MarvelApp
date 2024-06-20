@@ -179,7 +179,6 @@ private extension CoreDataService {
             }
             completion(.success(contents.map { .init(with: $0) }))
         } catch {
-            print("Error: ", error.localizedDescription)
             completion(.failure(FetchError.requestFailed(error)))
         }
     }
@@ -199,7 +198,6 @@ private extension CoreDataService {
             }
             completion(.success(.init(with: content)))
         } catch {
-            print("Error: ", error.localizedDescription)
             completion(.failure(FetchError.requestFailed(error)))
         }
     }

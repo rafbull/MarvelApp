@@ -217,8 +217,7 @@ private extension ContentDetailPresenter {
             ui?.stopLoadingAnimation()
             ui?.enableRightBarButton()
             setupUIDataSource()
-        case .failure(let error):
-            print(#function, error.localizedDescription)
+        case .failure:
             loadDataFromNetwork()
         }
     }
@@ -314,8 +313,8 @@ private extension ContentDetailPresenter {
             DispatchQueue.main.async {
                 defer { dispatchGroup.leave() }
                 switch result {
-                case .failure(let error):
-                    print(#function, error.localizedDescription)
+                case .failure:
+                    self?.router.showAlertController()
                 case .success(let baseResponseDTO):
                     guard let content = baseResponseDTO.data.results.map({ mapResult($0) }).first
                     else { return }
