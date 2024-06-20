@@ -44,10 +44,3 @@ enum ContentType: String, CaseIterable {
         }
     }
 }
-// Был такой порядок
-//case comic
-//case character
-//case creator
-//case series
-//case event
-//case story
