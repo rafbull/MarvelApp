@@ -22,6 +22,7 @@ final class ContentDetailCollectionViewDataSource: NSObject, UICollectionViewDat
         self.contentDetailViewModel = contentDetailViewModel
     }
     
+    // MARK: - Internal Methods
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         Section.allCases.count
     }

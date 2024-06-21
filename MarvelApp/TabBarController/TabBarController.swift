@@ -50,7 +50,7 @@ final class TabBarController: UITabBarController {
 private extension TabBarController {
     func setupTabBarController() {
         view.backgroundColor = .systemBackground
-        tabBar.tintColor = AppColor.fontColor
+        tabBar.tintColor = AppColor.textColor
         
         homeViewController.tabBarItem.image = UIImage(systemName: "house")
         searchViewController.tabBarItem.image = UIImage(systemName: "magnifyingglass")

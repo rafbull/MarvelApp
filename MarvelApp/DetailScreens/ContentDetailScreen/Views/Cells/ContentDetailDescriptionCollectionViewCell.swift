@@ -28,7 +28,7 @@ final class ContentDetailDescriptionCollectionViewCell: UICollectionViewCell {
     private let contentTitleLabel: UILabel = {
         let label = UILabel()
         label.font = AppFont.title
-        label.textColor = AppColor.fontColor
+        label.textColor = AppColor.textColor
         label.textAlignment = .center
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -38,7 +38,7 @@ final class ContentDetailDescriptionCollectionViewCell: UICollectionViewCell {
     private let contentDescriptionLabel: UILabel = {
         let label = UILabel()
         label.font = AppFont.body
-        label.textColor = AppColor.fontColor
+        label.textColor = AppColor.textColor
         label.textAlignment = .left
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false

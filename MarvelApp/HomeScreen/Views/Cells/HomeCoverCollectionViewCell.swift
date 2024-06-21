@@ -27,7 +27,7 @@ final class HomeCoverCollectionViewCell: UICollectionViewCell {
     private let comicTitleLabel: UILabel = {
         let label = UILabel()
         label.font = AppFont.title
-        label.textColor = AppColor.fontColor
+        label.textColor = AppColor.textColor
         label.backgroundColor = AppColor.cellBackground
         label.textAlignment = .center
         label.numberOfLines = 2

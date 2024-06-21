@@ -24,6 +24,7 @@ final class LibraryCollectionViewDataSource: NSObject, UICollectionViewDataSourc
         self.libraryViewModel = libraryViewModel
     }
     
+    // MARK: - Internal Methods
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         Section.allCases.count
     }

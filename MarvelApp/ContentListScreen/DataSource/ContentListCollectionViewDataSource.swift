@@ -16,6 +16,7 @@ final class ContentListCollectionViewDataSource: NSObject, UICollectionViewDataS
         self.contentListViewModels = contentListViewModels
     }
     
+    // MARK: - Internal Methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         contentListViewModels.count
     }

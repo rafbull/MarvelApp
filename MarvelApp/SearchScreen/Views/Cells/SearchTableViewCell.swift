@@ -29,7 +29,7 @@ final class SearchTableViewCell: UITableViewCell {
     private let contentTitleLabel: UILabel = {
         let label = UILabel()
         label.font = AppFont.title
-        label.textColor = AppColor.coverComicFontColor
+        label.textColor = AppColor.coverComicTextColor
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

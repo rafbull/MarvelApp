@@ -23,6 +23,7 @@ final class HomeCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         self.homeViewModel = homeViewModel
     }
     
+    // MARK: - Internal Methods
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         Section.allCases.count
     }

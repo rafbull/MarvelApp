@@ -13,6 +13,16 @@
 		201768402C14D79D00F762E1 /* MarvelApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2017683E2C14D79D00F762E1 /* MarvelApp.xcdatamodeld */; };
 		201768422C14D79F00F762E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 201768412C14D79F00F762E1 /* Assets.xcassets */; };
 		201768452C14D79F00F762E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 201768432C14D79F00F762E1 /* LaunchScreen.storyboard */; };
+		202BB28D2C256D870061431C /* OnboardingDataManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202BB28C2C256D870061431C /* OnboardingDataManagerProtocol.swift */; };
+		202BB28F2C256DAD0061431C /* OnboardingDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202BB28E2C256DAD0061431C /* OnboardingDataManager.swift */; };
+		202BB2912C256DF70061431C /* OnboardingContentDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202BB2902C256DF70061431C /* OnboardingContentDTO.swift */; };
+		202BB2932C256E2B0061431C /* OnboardingContentData.json in Resources */ = {isa = PBXBuildFile; fileRef = 202BB2922C256E2B0061431C /* OnboardingContentData.json */; };
+		202BB2D62C258B7B0061431C /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202BB2D52C258B7B0061431C /* UserDefaultsKey.swift */; };
+		202BB2D92C2591920061431C /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202BB2D82C2591920061431C /* CoordinatorProtocol.swift */; };
+		202BB2DB2C2591E60061431C /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202BB2DA2C2591E60061431C /* AppCoordinator.swift */; };
+		202BB2DD2C25922F0061431C /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202BB2DC2C25922F0061431C /* OnboardingCoordinator.swift */; };
+		202BB2DF2C25942B0061431C /* AppTabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202BB2DE2C25942B0061431C /* AppTabBarCoordinator.swift */; };
+		202BB2E12C2597300061431C /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202BB2E02C2597300061431C /* Observable.swift */; };
 		204809872C16014D0003F115 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204809862C16014D0003F115 /* HomeView.swift */; };
 		2048098A2C1603E60003F115 /* HomeCoverCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204809892C1603E60003F115 /* HomeCoverCollectionViewCell.swift */; };
 		2048098C2C1604AB0003F115 /* HomeComicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2048098B2C1604AB0003F115 /* HomeComicCollectionViewCell.swift */; };
@@ -91,6 +101,13 @@
 		20D493052C1DEE2600DF3EDE /* CharacterCDO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D492FB2C1DEE2600DF3EDE /* CharacterCDO+CoreDataProperties.swift */; };
 		20D493072C1DEE2600DF3EDE /* AdditionalContentCDO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D492FD2C1DEE2600DF3EDE /* AdditionalContentCDO+CoreDataProperties.swift */; };
 		20D4930A2C1DEFEA00DF3EDE /* DescriptableProtocolCDO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D493092C1DEFEA00DF3EDE /* DescriptableProtocolCDO.swift */; };
+		20EBEF592C248707002C0F34 /* OnboardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EBEF582C248707002C0F34 /* OnboardingPageViewController.swift */; };
+		20EBEF5B2C24927F002C0F34 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EBEF5A2C24927F002C0F34 /* OnboardingViewController.swift */; };
+		20EBEF5E2C2492BA002C0F34 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EBEF5D2C2492BA002C0F34 /* OnboardingView.swift */; };
+		20EBEF612C2492EC002C0F34 /* OnboardingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EBEF602C2492EC002C0F34 /* OnboardingPresenter.swift */; };
+		20EBEF632C249A63002C0F34 /* OnboardingAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EBEF622C249A63002C0F34 /* OnboardingAssembly.swift */; };
+		20EBEF662C24B61B002C0F34 /* OnboardingViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EBEF652C24B61B002C0F34 /* OnboardingViewProtocol.swift */; };
+		20EBEF6E2C24C1D1002C0F34 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EBEF6D2C24C1D1002C0F34 /* OnboardingViewModel.swift */; };
 		20FA22BF2C1996CE00851850 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FA22BE2C1996CE00851850 /* SearchViewController.swift */; };
 		20FA22C12C19989D00851850 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FA22C02C19989D00851850 /* SearchView.swift */; };
 		20FA22C52C199C1400851850 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FA22C42C199C1400851850 /* SearchTableViewCell.swift */; };
@@ -127,6 +144,16 @@
 		201768412C14D79F00F762E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		201768442C14D79F00F762E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		201768462C14D79F00F762E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		202BB28C2C256D870061431C /* OnboardingDataManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingDataManagerProtocol.swift; sourceTree = "<group>"; };
+		202BB28E2C256DAD0061431C /* OnboardingDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingDataManager.swift; sourceTree = "<group>"; };
+		202BB2902C256DF70061431C /* OnboardingContentDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContentDTO.swift; sourceTree = "<group>"; };
+		202BB2922C256E2B0061431C /* OnboardingContentData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = OnboardingContentData.json; sourceTree = "<group>"; };
+		202BB2D52C258B7B0061431C /* UserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKey.swift; sourceTree = "<group>"; };
+		202BB2D82C2591920061431C /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
+		202BB2DA2C2591E60061431C /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		202BB2DC2C25922F0061431C /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
+		202BB2DE2C25942B0061431C /* AppTabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabBarCoordinator.swift; sourceTree = "<group>"; };
+		202BB2E02C2597300061431C /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		204809862C16014D0003F115 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		204809892C1603E60003F115 /* HomeCoverCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoverCollectionViewCell.swift; sourceTree = "<group>"; };
 		2048098B2C1604AB0003F115 /* HomeComicCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeComicCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -205,6 +232,13 @@
 		20D492FB2C1DEE2600DF3EDE /* CharacterCDO+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CharacterCDO+CoreDataProperties.swift"; path = "MarvelApp/CoreData/Character/CharacterCDO+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		20D492FD2C1DEE2600DF3EDE /* AdditionalContentCDO+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AdditionalContentCDO+CoreDataProperties.swift"; path = "MarvelApp/CoreData/AdditionalContent/AdditionalContentCDO+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		20D493092C1DEFEA00DF3EDE /* DescriptableProtocolCDO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptableProtocolCDO.swift; sourceTree = "<group>"; };
+		20EBEF582C248707002C0F34 /* OnboardingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageViewController.swift; sourceTree = "<group>"; };
+		20EBEF5A2C24927F002C0F34 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		20EBEF5D2C2492BA002C0F34 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		20EBEF602C2492EC002C0F34 /* OnboardingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPresenter.swift; sourceTree = "<group>"; };
+		20EBEF622C249A63002C0F34 /* OnboardingAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAssembly.swift; sourceTree = "<group>"; };
+		20EBEF652C24B61B002C0F34 /* OnboardingViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewProtocol.swift; sourceTree = "<group>"; };
+		20EBEF6D2C24C1D1002C0F34 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		20FA22BE2C1996CE00851850 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		20FA22C02C19989D00851850 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		20FA22C42C199C1400851850 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
@@ -282,16 +316,18 @@
 		201768342C14D79D00F762E1 /* MarvelApp */ = {
 			isa = PBXGroup;
 			children = (
-				205D1AE22C247A88009AD2E8 /* Onboarding */,
 				2017684D2C14D83F00F762E1 /* Application */,
+				202BB2D72C25917A0061431C /* Coordinators */,
 				204A9A312C18E144002500BA /* TabBarController */,
 				204A9A2E2C18D227002500BA /* Extensions */,
+				202BB2D42C258B720061431C /* Helpers */,
 				204809962C160ABA0003F115 /* Resources */,
 				206E0B592C2174D100B30BB4 /* Fabrics */,
 				204809A52C1628F10003F115 /* Errors */,
 				2048099C2C160FC30003F115 /* Services */,
 				2017684C2C14D82A00F762E1 /* CoreData */,
 				2084EC802C1717C400F6B8C6 /* Models */,
+				205D1AE22C247A88009AD2E8 /* Onboarding */,
 				204809802C15FE940003F115 /* HomeScreen */,
 				204809812C15FF190003F115 /* SearchScreen */,
 				204809822C15FF530003F115 /* LibraryScreen */,
@@ -336,6 +372,37 @@
 				201768432C14D79F00F762E1 /* LaunchScreen.storyboard */,
 			);
 			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		202BB28B2C256D650061431C /* OnboardingDataManager */ = {
+			isa = PBXGroup;
+			children = (
+				202BB28C2C256D870061431C /* OnboardingDataManagerProtocol.swift */,
+				202BB28E2C256DAD0061431C /* OnboardingDataManager.swift */,
+				202BB2902C256DF70061431C /* OnboardingContentDTO.swift */,
+				202BB2922C256E2B0061431C /* OnboardingContentData.json */,
+			);
+			path = OnboardingDataManager;
+			sourceTree = "<group>";
+		};
+		202BB2D42C258B720061431C /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				202BB2D52C258B7B0061431C /* UserDefaultsKey.swift */,
+				202BB2E02C2597300061431C /* Observable.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		202BB2D72C25917A0061431C /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				202BB2D82C2591920061431C /* CoordinatorProtocol.swift */,
+				202BB2DA2C2591E60061431C /* AppCoordinator.swift */,
+				202BB2DC2C25922F0061431C /* OnboardingCoordinator.swift */,
+				202BB2DE2C25942B0061431C /* AppTabBarCoordinator.swift */,
+			);
+			path = Coordinators;
 			sourceTree = "<group>";
 		};
 		204809802C15FE940003F115 /* HomeScreen */ = {
@@ -504,6 +571,10 @@
 		205D1AE22C247A88009AD2E8 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				20EBEF622C249A63002C0F34 /* OnboardingAssembly.swift */,
+				202BB28B2C256D650061431C /* OnboardingDataManager */,
+				20EBEF5C2C2492A3002C0F34 /* Views */,
+				20EBEF5F2C2492D2002C0F34 /* Presenter */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -749,6 +820,42 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		20EBEF5C2C2492A3002C0F34 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				20EBEF642C24B5EA002C0F34 /* Protocols */,
+				20EBEF6C2C24C1B8002C0F34 /* ViewModels */,
+				20EBEF582C248707002C0F34 /* OnboardingPageViewController.swift */,
+				20EBEF5A2C24927F002C0F34 /* OnboardingViewController.swift */,
+				20EBEF5D2C2492BA002C0F34 /* OnboardingView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		20EBEF5F2C2492D2002C0F34 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				20EBEF602C2492EC002C0F34 /* OnboardingPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		20EBEF642C24B5EA002C0F34 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				20EBEF652C24B61B002C0F34 /* OnboardingViewProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		20EBEF6C2C24C1B8002C0F34 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				20EBEF6D2C24C1D1002C0F34 /* OnboardingViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		20FA22C22C199C0700851850 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -956,6 +1063,7 @@
 			files = (
 				20FA22DD2C19ADCE00851850 /* SearchContentData.json in Resources */,
 				201768452C14D79F00F762E1 /* LaunchScreen.storyboard in Resources */,
+				202BB2932C256E2B0061431C /* OnboardingContentData.json in Resources */,
 				201768422C14D79F00F762E1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -976,9 +1084,11 @@
 				20FA22CE2C199ECD00851850 /* SearchRouter.swift in Sources */,
 				204A9A282C1893D3002500BA /* AppFont.swift in Sources */,
 				20FA22C82C199C8B00851850 /* SearchPresenter.swift in Sources */,
+				20EBEF632C249A63002C0F34 /* OnboardingAssembly.swift in Sources */,
 				205D1ADF2C2437AD009AD2E8 /* String+Extension.swift in Sources */,
 				2084EC8B2C171CBC00F6B8C6 /* Character.swift in Sources */,
 				20D493022C1DEE2600DF3EDE /* CreatorCDO+CoreDataClass.swift in Sources */,
+				202BB2DF2C25942B0061431C /* AppTabBarCoordinator.swift in Sources */,
 				2017683A2C14D79D00F762E1 /* HomeViewController.swift in Sources */,
 				204809AE2C163E290003F115 /* ComicDTO.swift in Sources */,
 				20D493042C1DEE2600DF3EDE /* CharacterCDO+CoreDataClass.swift in Sources */,
@@ -989,6 +1099,7 @@
 				204809932C1608280003F115 /* HomePresenter.swift in Sources */,
 				20CA9C702C1C86130005709A /* LibraryCharacterCollectionViewCell.swift in Sources */,
 				20FA22D62C19A8D900851850 /* SearchContentViewModel.swift in Sources */,
+				202BB2E12C2597300061431C /* Observable.swift in Sources */,
 				2084EC8E2C1736D000F6B8C6 /* HomeAssembly.swift in Sources */,
 				204809A22C16111C0003F115 /* NetworkServiceProtocol.swift in Sources */,
 				20B456322C1B3E71005AD068 /* ContentDetailViewProtocol.swift in Sources */,
@@ -1000,27 +1111,33 @@
 				2084EC882C171CBC00F6B8C6 /* Event.swift in Sources */,
 				20FA22D12C19A01E00851850 /* SearchTableViewDataSource.swift in Sources */,
 				204809AB2C1637840003F115 /* CharacterDTO.swift in Sources */,
+				20EBEF592C248707002C0F34 /* OnboardingPageViewController.swift in Sources */,
 				20D492FF2C1DEE2600DF3EDE /* EventCDO+CoreDataProperties.swift in Sources */,
 				20CA9C7B2C1C8AE60005709A /* CoreDataServiceProtocol.swift in Sources */,
 				20CA9C742C1C861B0005709A /* LibraryCollectionViewDataSource.swift in Sources */,
+				20EBEF612C2492EC002C0F34 /* OnboardingPresenter.swift in Sources */,
 				20FA22DF2C19B98300851850 /* SearchResultTableViewController.swift in Sources */,
 				204809A42C16112F0003F115 /* NetworkService.swift in Sources */,
 				20CA9C672C1C86080005709A /* LibraryPresenter.swift in Sources */,
 				204809A02C1610D90003F115 /* Endpoint.swift in Sources */,
 				20CA9C6E2C1C860F0005709A /* LibraryView.swift in Sources */,
 				20FA22C12C19989D00851850 /* SearchView.swift in Sources */,
+				20EBEF5B2C24927F002C0F34 /* OnboardingViewController.swift in Sources */,
 				2084EC822C171CB200F6B8C6 /* Comic.swift in Sources */,
 				20B456312C1B3E6E005AD068 /* ContentDetailContentCollectionViewCell.swift in Sources */,
 				204809952C160A0F0003F115 /* HomeViewProtocol.swift in Sources */,
 				204A9A2D2C18CCA8002500BA /* HomeCollectionViewSectionHeaderView.swift in Sources */,
+				202BB2912C256DF70061431C /* OnboardingContentDTO.swift in Sources */,
 				20FA22D92C19AAA300851850 /* SearchDataManager.swift in Sources */,
 				20D493002C1DEE2600DF3EDE /* SeriesCDO+CoreDataClass.swift in Sources */,
 				204809982C160ADE0003F115 /* AppColor.swift in Sources */,
+				202BB2D62C258B7B0061431C /* UserDefaultsKey.swift in Sources */,
 				20B4562C2C1B3E65005AD068 /* ContentDetailViewModel.swift in Sources */,
 				20FA22FE2C19EE0E00851850 /* ContentListViewProtocol.swift in Sources */,
 				20FA22F72C19E59500851850 /* ContentListCollectionViewCell.swift in Sources */,
 				2084EC7B2C17102700F6B8C6 /* CreatorDTO.swift in Sources */,
 				2084EC792C170E6900F6B8C6 /* SeriesDTO.swift in Sources */,
+				20EBEF6E2C24C1D1002C0F34 /* OnboardingViewModel.swift in Sources */,
 				20FA22FC2C19EB7700851850 /* ContentListViewModel.swift in Sources */,
 				20FA22E52C19D3D100851850 /* SearchResultContentViewModel.swift in Sources */,
 				2048099B2C160E0D0003F115 /* HomeRouter.swift in Sources */,
@@ -1042,11 +1159,13 @@
 				20FA22EE2C19E4F000851850 /* ContentListViewController.swift in Sources */,
 				2048098E2C1604FE0003F115 /* HomeCharacterCollectionViewCell.swift in Sources */,
 				20CA9C7D2C1C8B2C0005709A /* SearchDataManagerProtocol.swift in Sources */,
+				202BB2D92C2591920061431C /* CoordinatorProtocol.swift in Sources */,
 				20D493012C1DEE2600DF3EDE /* SeriesCDO+CoreDataProperties.swift in Sources */,
 				204809872C16014D0003F115 /* HomeView.swift in Sources */,
 				20FA22F22C19E50C00851850 /* ContentListPresenter.swift in Sources */,
 				20D492F02C1DD6EC00DF3EDE /* ComicCDO+CoreDataClass.swift in Sources */,
 				20D493052C1DEE2600DF3EDE /* CharacterCDO+CoreDataProperties.swift in Sources */,
+				202BB28F2C256DAD0061431C /* OnboardingDataManager.swift in Sources */,
 				204809A72C1629040003F115 /* FetchError.swift in Sources */,
 				20CA9C712C1C86130005709A /* LibraryContentCollectionViewCell.swift in Sources */,
 				204809B02C163E800003F115 /* DataClassDTO.swift in Sources */,
@@ -1062,14 +1181,19 @@
 				20FA22DB2C19AD1900851850 /* SearchContentDTO.swift in Sources */,
 				20D492F32C1DDB9F00DF3EDE /* AdditionalContent.swift in Sources */,
 				20FA22BF2C1996CE00851850 /* SearchViewController.swift in Sources */,
+				202BB2DB2C2591E60061431C /* AppCoordinator.swift in Sources */,
 				20FA22F02C19E4FC00851850 /* ContentListView.swift in Sources */,
 				20FA22F52C19E52A00851850 /* ContentListRouter.swift in Sources */,
 				2084EC7D2C17113000F6B8C6 /* EventDTO.swift in Sources */,
 				20D492F12C1DD6EC00DF3EDE /* ComicCDO+CoreDataProperties.swift in Sources */,
+				202BB2DD2C25922F0061431C /* OnboardingCoordinator.swift in Sources */,
+				20EBEF662C24B61B002C0F34 /* OnboardingViewProtocol.swift in Sources */,
 				205D1AE12C246AFB009AD2E8 /* AdditionalContentCDO+CoreDataClass.swift in Sources */,
 				204809A92C1635520003F115 /* BaseResponseDTO.swift in Sources */,
 				20B456372C1B4195005AD068 /* ContentType.swift in Sources */,
 				204A9A302C18D23A002500BA /* UIColor+Extension.swift in Sources */,
+				202BB28D2C256D870061431C /* OnboardingDataManagerProtocol.swift in Sources */,
+				20EBEF5E2C2492BA002C0F34 /* OnboardingView.swift in Sources */,
 				20B456342C1B3E75005AD068 /* ContentDetailView.swift in Sources */,
 				20B4562B2C1B3E61005AD068 /* ContentDetailCollectionViewDataSource.swift in Sources */,
 				20B4562A2C1B3E5E005AD068 /* ContentDetailRouter.swift in Sources */,
