@@ -49,6 +49,5 @@ extension Comic {
         description = dto.textObjects.first?.text ?? ""
         defaultDescripion = dto.description
         textObject = dto.textObjects.first?.text
-        
     }
 }

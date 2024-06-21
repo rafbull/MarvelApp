@@ -12,7 +12,6 @@ protocol DescriptableProtocol {
     var id: Int { get }
     var title: String { get }
     var description: String { get }
-//    var description: String { get set }
     var thumbnailURL: String { get }
     var image: UIImage? { get set }
     var isFavorite: Bool { get }
