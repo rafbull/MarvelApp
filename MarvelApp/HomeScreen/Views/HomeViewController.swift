@@ -13,6 +13,7 @@ final class HomeViewController: UIViewController {
     private lazy var contentView: HomeView = {
         let contentView = HomeView()
         contentView.collectionView.delegate = self
+        contentView.refreshControl.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
         return contentView
     }()
     
@@ -76,11 +77,19 @@ extension HomeViewController: HomeViewProtocol {
         contentView.collectionView.isHidden = false
         contentView.activityIndicatorView.stopAnimating()
     }
+    
+    func endRefreshing() {
+        contentView.refreshControl.endRefreshing()
+    }
 }
 
 // MARK: - Private Extension
 private extension HomeViewController {
     func setupUI() {
         navigationController?.navigationBar.tintColor = AppColor.accentColor
+    }
+    
+    @objc func didPullToRefresh() {
+        presenter.didPullToRefresh()
     }
 }

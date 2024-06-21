@@ -13,4 +13,6 @@ protocol HomeViewProtocol: AnyObject {
     
     func startLoadingAnimation()
     func stopLoadingAnimation()
+    
+    func endRefreshing()
 }

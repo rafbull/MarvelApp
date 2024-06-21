@@ -77,6 +77,11 @@ final class HomePresenter {
             networkService: networkService
         )
     }
+    
+    func didPullToRefresh() {
+        loadData()
+        ui?.endRefreshing()
+    }
 }
 
 // MARK: - Private Extension

@@ -15,9 +15,12 @@ final class HomeView: UIView {
         return activityIndicatorView
     }()
     
+    private(set) lazy var refreshControl = UIRefreshControl()
+    
     private(set) lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.showsVerticalScrollIndicator = false
+        collectionView.refreshControl = refreshControl
         collectionView.register(
             HomeCoverCollectionViewCell.self,
             forCellWithReuseIdentifier: HomeCoverCollectionViewCell.identifier
