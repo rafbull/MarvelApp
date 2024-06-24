@@ -1,4 +1,81 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21G1974" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="AdditionalContentCDO" representedClassName="AdditionalContentCDO" syncable="YES">
+        <attribute name="contentID" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="imageData" attributeType="Binary"/>
+        <attribute name="title" attributeType="String"/>
+        <relationship name="characterFirst" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CharacterCDO" inverseName="firstAdditionalContent" inverseEntity="CharacterCDO"/>
+        <relationship name="characterSecond" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CharacterCDO" inverseName="secondAdditionalContent" inverseEntity="CharacterCDO"/>
+        <relationship name="comicFirst" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ComicCDO" inverseName="firstAdditionalContent" inverseEntity="ComicCDO"/>
+        <relationship name="comicSecond" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ComicCDO" inverseName="secondAdditionalContent" inverseEntity="ComicCDO"/>
+        <relationship name="creatorFirst" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CreatorCDO" inverseName="firstAdditionalContent" inverseEntity="CreatorCDO"/>
+        <relationship name="creatorSecond" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CreatorCDO" inverseName="secondAdditionalContent" inverseEntity="CreatorCDO"/>
+        <relationship name="eventFirst" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EventCDO" inverseName="firstAdditionalContent" inverseEntity="EventCDO"/>
+        <relationship name="eventSecond" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EventCDO" inverseName="secondAdditionalContent" inverseEntity="EventCDO"/>
+        <relationship name="seriesFirst" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SeriesCDO" inverseName="firstAdditionalContent" inverseEntity="SeriesCDO"/>
+        <relationship name="seriesSecond" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SeriesCDO" inverseName="secondAdditionalContent" inverseEntity="SeriesCDO"/>
+    </entity>
+    <entity name="CharacterCDO" representedClassName="CharacterCDO" syncable="YES">
+        <attribute name="contentID" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="descriptionText" attributeType="String"/>
+        <attribute name="imageData" attributeType="Binary"/>
+        <attribute name="isFavorite" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="thumbnailURL" attributeType="String"/>
+        <attribute name="title" attributeType="String"/>
+        <attribute name="uuid" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="firstAdditionalContent" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="AdditionalContentCDO" inverseName="characterFirst" inverseEntity="AdditionalContentCDO"/>
+        <relationship name="secondAdditionalContent" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="AdditionalContentCDO" inverseName="characterSecond" inverseEntity="AdditionalContentCDO"/>
+    </entity>
+    <entity name="ComicCDO" representedClassName="ComicCDO" syncable="YES">
+        <attribute name="contentID" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="descriptionText" attributeType="String"/>
+        <attribute name="imageData" attributeType="Binary"/>
+        <attribute name="isFavorite" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="thumbnailURL" attributeType="String"/>
+        <attribute name="title" attributeType="String"/>
+        <attribute name="uuid" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="firstAdditionalContent" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="AdditionalContentCDO" inverseName="comicFirst" inverseEntity="AdditionalContentCDO"/>
+        <relationship name="secondAdditionalContent" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="AdditionalContentCDO" inverseName="comicSecond" inverseEntity="AdditionalContentCDO"/>
+    </entity>
+    <entity name="CreatorCDO" representedClassName="CreatorCDO" syncable="YES">
+        <attribute name="contentID" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="descriptionText" attributeType="String"/>
+        <attribute name="imageData" attributeType="Binary"/>
+        <attribute name="isFavorite" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="thumbnailURL" attributeType="String"/>
+        <attribute name="title" attributeType="String"/>
+        <attribute name="uuid" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="firstAdditionalContent" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="AdditionalContentCDO" inverseName="creatorFirst" inverseEntity="AdditionalContentCDO"/>
+        <relationship name="secondAdditionalContent" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="AdditionalContentCDO" inverseName="creatorSecond" inverseEntity="AdditionalContentCDO"/>
+    </entity>
+    <entity name="EventCDO" representedClassName="EventCDO" syncable="YES">
+        <attribute name="contentID" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="descriptionText" attributeType="String"/>
+        <attribute name="imageData" attributeType="Binary"/>
+        <attribute name="isFavorite" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="thumbnailURL" attributeType="String"/>
+        <attribute name="title" attributeType="String"/>
+        <attribute name="uuid" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="firstAdditionalContent" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="AdditionalContentCDO" inverseName="eventFirst" inverseEntity="AdditionalContentCDO"/>
+        <relationship name="secondAdditionalContent" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="AdditionalContentCDO" inverseName="eventSecond" inverseEntity="AdditionalContentCDO"/>
+    </entity>
+    <entity name="SeriesCDO" representedClassName="SeriesCDO" syncable="YES">
+        <attribute name="contentID" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="descriptionText" attributeType="String"/>
+        <attribute name="imageData" attributeType="Binary"/>
+        <attribute name="isFavorite" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="thumbnailURL" attributeType="String"/>
+        <attribute name="title" attributeType="String"/>
+        <attribute name="uuid" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="firstAdditionalContent" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="AdditionalContentCDO" inverseName="seriesFirst" inverseEntity="AdditionalContentCDO"/>
+        <relationship name="secondAdditionalContent" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="AdditionalContentCDO" inverseName="seriesSecond" inverseEntity="AdditionalContentCDO"/>
+    </entity>
+    <elements>
+        <element name="AdditionalContentCDO" positionX="-9" positionY="81" width="128" height="224"/>
+        <element name="CharacterCDO" positionX="-54" positionY="-9" width="128" height="164"/>
+        <element name="ComicCDO" positionX="-63" positionY="-18" width="128" height="164"/>
+        <element name="CreatorCDO" positionX="-36" positionY="9" width="128" height="164"/>
+        <element name="EventCDO" positionX="0" positionY="45" width="128" height="164"/>
+        <element name="SeriesCDO" positionX="-18" positionY="27" width="128" height="164"/>
+    </elements>
 </model>
